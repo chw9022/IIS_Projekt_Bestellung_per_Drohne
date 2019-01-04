@@ -1,12 +1,14 @@
-CREATE Database groceryshop;
+CREATE Database IF NOT EXISTS groceryshop;
 use groceryshop;
 
-CREATE TABLE clienttype(
+DROP TABLE IF EXISTS `groceryshop`.`clienttype`;
+CREATE TABLE IF NOT EXISTS clienttype(
 id int PRIMARY KEY AUTO_INCREMENT,
 name varchar(40) NOT NULL
 );
 
-CREATE TABLE clients(
+DROP TABLE IF EXISTS `groceryshop`.`clients`;
+CREATE TABLE IF NOT EXISTS clients(
 id int PRIMARY KEY AUTO_INCREMENT,
 firstname varchar(50) NOT NULL,
 lastname varchar(50) NOT NULL,
@@ -16,7 +18,8 @@ clienttype int DEFAULT 1,
 FOREIGN KEY (clienttype) REFERENCES clienttype(id)
 );
 
-CREATE TABLE articles(
+DROP TABLE IF EXISTS `groceryshop`.`articles`;
+CREATE TABLE IF NOT EXISTS articles(
 id int PRIMARY KEY AUTO_INCREMENT,
 name varchar(50) NOT NULL,
 weight decimal(10,2) NOT NULL,
@@ -24,21 +27,24 @@ price decimal(10,2) NOT NULL,
 amount int NOT NULL
 );
 
-CREATE TABLE orders(
+DROP TABLE IF EXISTS `groceryshop`.`orders`;
+CREATE TABLE IF NOT EXISTS orders(
 id int PRIMARY KEY AUTO_INCREMENT,
 clientId int NOT NULL,
 orderdate DATE,
 FOREIGN KEY (clientId) REFERENCES clients(id)
 );
 
-CREATE TABLE bills(
+DROP TABLE IF EXISTS `groceryshop`.`bills`;
+CREATE TABLE IF NOT EXISTS bills(
 id int PRIMARY KEY AUTO_INCREMENT,
 clientId int NOT NULL,
 billdate DATE,
 FOREIGN KEY (clientId) REFERENCES clients(id)
 );
 
-CREATE TABLE orders_position(
+DROP TABLE IF EXISTS `groceryshop`.`orders_position`;
+CREATE TABLE IF NOT EXISTS orders_position(
 id int PRIMARY KEY AUTO_INCREMENT,
 articleId int NOT NULL,
 amount int NOT NULL,
@@ -48,7 +54,8 @@ FOREIGN KEY (articleId) REFERENCES articles(id),
 FOREIGN KEY (orderId) REFERENCES orders(id)
 );
 
-CREATE TABLE bills_position(
+DROP TABLE IF EXISTS `groceryshop`.`bills_position`;
+CREATE TABLE IF NOT EXISTS bills_position(
 id int PRIMARY KEY AUTO_INCREMENT,
 articleId int NOT NULL,
 billId int NOT NULL,
