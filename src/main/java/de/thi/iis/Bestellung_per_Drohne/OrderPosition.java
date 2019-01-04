@@ -20,13 +20,13 @@ public class OrderPosition {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
-	int id;
+	private int id;
 	@OneToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "articleId")
-	Article article;
+	private Article article;
 	@Column(name = "amount")
-	int amount;
+	private int amount;
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "orderId")
-	Order order;
+	private Order order;
 }

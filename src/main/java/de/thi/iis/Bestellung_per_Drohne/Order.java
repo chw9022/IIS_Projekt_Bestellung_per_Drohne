@@ -23,12 +23,12 @@ public class Order implements Archivable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
-	int id;
+	private int id;
 	@OneToMany(mappedBy = "order")
 	private List<OrderPosition> orderPositions;
 	@OneToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "clientId")
-	Client client;
+	private Client client;
 	@Column(name = "orderdate")
-	Date orderdate;
+	private Date orderdate;
 }
