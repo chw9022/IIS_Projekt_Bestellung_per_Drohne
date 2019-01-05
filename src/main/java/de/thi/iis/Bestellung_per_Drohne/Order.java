@@ -28,7 +28,7 @@ public class Order implements Archivable {
 	private int id;
 	@OneToMany(mappedBy = "order", cascade = CascadeType.PERSIST)
 	private List<OrderPosition> orderPositions = new ArrayList<OrderPosition>();
-	@OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
+	@OneToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "clientId")
 	private Client client;
 	@Column(name = "orderdate")
