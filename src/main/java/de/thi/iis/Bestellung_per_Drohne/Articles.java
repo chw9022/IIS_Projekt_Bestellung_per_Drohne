@@ -39,7 +39,7 @@ public class Articles {
 		return query.getResultList();
 	}
 
-	public List<Article> getArticles() throws Exception {
+	public List<Article> getArticles() {
 		Query query = entityManager.createQuery("SELECT a from Article as a");
 		return query.getResultList();
 	}
