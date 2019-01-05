@@ -1,6 +1,8 @@
 CREATE Database IF NOT EXISTS groceryshop;
 use groceryshop;
 
+SET FOREIGN_KEY_CHECKS = 0;
+
 DROP TABLE IF EXISTS `groceryshop`.`clienttype`;
 CREATE TABLE IF NOT EXISTS clienttype(
 id int PRIMARY KEY AUTO_INCREMENT,
