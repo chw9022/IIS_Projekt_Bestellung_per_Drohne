@@ -23,13 +23,7 @@ public class Articles {
 	}
 
 	public Article findById(int articleId) {
-		final Query query = entityManager.createQuery("SELECT a from Article as a WHERE a.id = :articleId");
-		query.setParameter("articleId", articleId);
-		List<Article> result = query.getResultList();
-		if (!result.isEmpty()) {
-			return result.get(0);
-		}
-		return null;
+		  return entityManager.find(Article.class, articleId);
 	}
 
 	public List<Article> findByName(String articleName) {
