@@ -21,7 +21,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "orders")
-public class Order implements Archivable {
+public class Order {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
