@@ -7,7 +7,7 @@ import org.apache.camel.builder.RouteBuilder;
 import org.apache.camel.converter.jaxb.JaxbDataFormat;
 import org.apache.camel.model.dataformat.JsonLibrary;
 
-import de.thi.iis.Bestellung_per_Drohne.Article;
+import jpa.entities.Article;
 
 public class ArchiveRouteBuilder extends RouteBuilder {
 

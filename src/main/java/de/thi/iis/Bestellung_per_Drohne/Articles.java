@@ -10,6 +10,8 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
 
+import jpa.entities.Article;
+
 public class Articles {
 	EntityManagerFactory emFactory = Persistence.createEntityManagerFactory("GroceryShopPersistence");
 	EntityManager entityManager = emFactory.createEntityManager();

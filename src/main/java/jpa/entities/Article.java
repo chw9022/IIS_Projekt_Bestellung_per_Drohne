@@ -1,7 +1,7 @@
 // #######################################
 // Author: Felix Ziegner
 // #######################################
-package de.thi.iis.Bestellung_per_Drohne;
+package jpa.entities;
 
 import java.io.Serializable;
 
