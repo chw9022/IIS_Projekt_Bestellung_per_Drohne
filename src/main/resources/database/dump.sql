@@ -33,8 +33,10 @@ DROP TABLE IF EXISTS `groceryshop`.`orders`;
 CREATE TABLE IF NOT EXISTS orders(
 id int PRIMARY KEY AUTO_INCREMENT,
 clientId int NOT NULL,
+droneId int DEFAULT -1,
 orderdate DATE,
-FOREIGN KEY (clientId) REFERENCES clients(id)
+FOREIGN KEY (clientId) REFERENCES clients(id),
+FOREIGN KEY (droneId) REFERENCES drones(id)
 );
 
 DROP TABLE IF EXISTS `groceryshop`.`bills`;
@@ -67,6 +69,19 @@ FOREIGN KEY (articleId) REFERENCES articles(id),
 FOREIGN KEY (billId) REFERENCES bills(id)
 );
 
+DROP TABLE IF EXISTS `groceryshop`.`drone_status`;
+CREATE TABLE IF NOT EXISTS drone_status(
+id int PRIMARY KEY AUTO_INCREMENT,
+status varchar(50) NOT NULL
+);
+
+DROP TABLE IF EXISTS `groceryshop`.`drones`;
+CREATE TABLE IF NOT EXISTS drones(
+id int PRIMARY KEY AUTO_INCREMENT,
+status int DEFAULT 1,
+FOREIGN KEY (status) REFERENCES drone_status(id)
+);
+
 INSERT INTO clienttype(name) VALUES("Normal");
 INSERT INTO clienttype(name) VALUES("Premium");
 INSERT INTO clienttype(name) VALUES("Super");
@@ -76,3 +91,11 @@ INSERT INTO articles (name, weight, price, amount) VALUES("Fraenkische Bratwuers
 INSERT INTO clients (firstname, lastname, street, place, clienttype) VALUES("Hans","Schmidt", "Erlangerstr. 1a","Erlangen",1);
 INSERT INTO clients (firstname, lastname, street, place, clienttype) VALUES("Peter","Maier", "Nürnbergerstr. 1b","Fürth",2);
 INSERT INTO clients (firstname, lastname, street, place, clienttype) VALUES("Andreas","Meister", "Fürtherstr. 1c","Nürnberg",3);
+INSERT INTO drone_status (status) VALUES("READY_TO_START");
+INSERT INTO drone_status (status) VALUES("FLYING_TO_CLIENT");
+INSERT INTO drone_status (status) VALUES("FLYING_FROM_CLIENT");
+INSERT INTO drone_status (status) VALUES("CHARGING");
+INSERT INTO drone_status (status) VALUES("ERROR");
+INSERT INTO drones (status) VALUES(1);
+INSERT INTO drones (status) VALUES(4);
+INSERT INTO drones (status) VALUES(1);
