@@ -3,17 +3,19 @@
 // #######################################
 package de.thi.iis.Bestellung_per_Drohne.camel;
 
-import org.apache.camel.CamelContext;
-import org.apache.camel.impl.DefaultCamelContext;
+import javax.jms.ConnectionFactory;
+
+import org.apache.activemq.ActiveMQConnectionFactory;
+import org.apache.camel.component.jms.JmsComponent;
+import org.apache.camel.main.Main;
 
 public class CamelApp {
-    public static final void main(String[] args) throws Exception {
-        CamelContext context = new DefaultCamelContext();
-        try {
-            // context.addRoutes(new Builder());
-            context.start();
-        } finally {
-            context.stop();
-        }
-    }
+	public static void main(String[] args) throws Exception {
+		Main main = new Main();
+		ConnectionFactory connectionFactory = new ActiveMQConnectionFactory("tcp://0.0.0.0:61616");
+		main.bind("jms", JmsComponent.jmsComponentAutoAcknowledge(connectionFactory));
+		main.addRouteBuilder(new FillArchiveRouteBuilder());
+		main.addRouteBuilder(new ArchiveRouteBuilder());
+		main.run(args);
+	}
 }
