@@ -35,6 +35,7 @@ id int PRIMARY KEY AUTO_INCREMENT,
 clientId int NOT NULL,
 droneId int DEFAULT -1,
 orderdate DATE,
+closed_at DATE,
 FOREIGN KEY (clientId) REFERENCES clients(id),
 FOREIGN KEY (droneId) REFERENCES drones(id)
 );

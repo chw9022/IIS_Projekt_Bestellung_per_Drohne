@@ -24,6 +24,7 @@ import javax.persistence.Table;
 @Table(name = "orders")
 public class Order implements Serializable {
 	private static final long serialVersionUID = 1L;
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
@@ -35,6 +36,12 @@ public class Order implements Serializable {
 	private Client client;
 	@Column(name = "orderdate")
 	private Date orderdate;
+	@Column(name = "closed_at")
+	private Date closed_at;
+
+	public int getId() {
+		return id;
+	}
 
 	public List<OrderPosition> getOrderPositions() {
 		return orderPositions;
@@ -60,7 +67,12 @@ public class Order implements Serializable {
 		this.orderdate = orderdate;
 	}
 
-	public int getId() {
-		return id;
+	public Date getClosed_at() {
+		return closed_at;
 	}
+
+	public void setClosed_at(Date closed_at) {
+		this.closed_at = closed_at;
+	}
+
 }
