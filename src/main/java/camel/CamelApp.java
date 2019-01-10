@@ -1,7 +1,7 @@
 // #######################################
 // Author: Felix Ziegner
 // #######################################
-package de.thi.iis.Bestellung_per_Drohne.camel;
+package camel;
 
 import javax.jms.ConnectionFactory;
 
