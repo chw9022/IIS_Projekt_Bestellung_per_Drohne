@@ -1,4 +1,7 @@
-package de.thi.iis.Bestellung_per_Drohne.camel;
+// #######################################
+// Author: Felix Ziegner
+// #######################################
+package camel.routes;
 
 import javax.xml.bind.JAXBContext;
 
@@ -8,19 +11,24 @@ import org.apache.camel.converter.jaxb.JaxbDataFormat;
 import org.apache.camel.model.dataformat.JsonLibrary;
 
 import jpa.entities.Article;
+import servicetasks.ArchiveOrder;
 
 public class ArchiveRouteBuilder extends RouteBuilder {
+	private static String directory_archive = "file:/home/lars/Downloads";
+	private static String external_archive = "jms:queue:order-archive-external";
 
 	@Override
 	public void configure() throws Exception {
-		Endpoint source = endpoint("jms:queue:toarchive");
-		Endpoint destination1 = endpoint("jms:queue:archivedb");
-		Endpoint destination2 = endpoint("file:/home/lars/Downloads/xml_elements/destination");
+		Endpoint source = endpoint("jms:queue:" + ArchiveOrder.QUEUE_ORDER_ARCHIVE);
+		Endpoint destination1 = endpoint(directory_archive);
+		Endpoint destination2 = endpoint(external_archive);
+
 		JAXBContext jaxbContext = JAXBContext.newInstance(Article.class);
 		JaxbDataFormat jaxbDataFormat = new JaxbDataFormat(jaxbContext);
-		from(source).unmarshal(jaxbDataFormat)
-		.marshal().json(JsonLibrary.Jackson, Article.class)
-		.to(destination1)
-		.to(destination2);
+
+		from(source) // from XML source
+				.unmarshal(jaxbDataFormat) // XML to POJO
+				.marshal().json(JsonLibrary.Jackson, Article.class) // POJO to JSON
+				.to(destination1).to(destination2);
 	}
 }

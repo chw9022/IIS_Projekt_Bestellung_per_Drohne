@@ -75,4 +75,9 @@ public class Order implements Serializable {
 		this.closed_at = closed_at;
 	}
 
+	public void closeOrder() {
+		if (this.closed_at == null) {
+			this.closed_at = new Date();
+		}
+	}
 }
