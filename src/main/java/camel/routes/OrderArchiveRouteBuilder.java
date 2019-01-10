@@ -13,7 +13,7 @@ import org.apache.camel.model.dataformat.JsonLibrary;
 import jpa.entities.Article;
 import servicetasks.ArchiveOrder;
 
-public class ArchiveRouteBuilder extends RouteBuilder {
+public class OrderArchiveRouteBuilder extends RouteBuilder {
 	private static String directory_archive = "file:/home/lars/Downloads";
 	private static String external_archive = "jms:queue:order-archive-external";
 
