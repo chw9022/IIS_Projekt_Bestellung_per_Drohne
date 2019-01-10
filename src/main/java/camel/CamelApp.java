@@ -14,7 +14,6 @@ public class CamelApp {
 		Main main = new Main();
 		ConnectionFactory connectionFactory = new ActiveMQConnectionFactory("tcp://0.0.0.0:61616");
 		main.bind("jms", JmsComponent.jmsComponentAutoAcknowledge(connectionFactory));
-		main.addRouteBuilder(new FillArchiveRouteBuilder());
 		main.addRouteBuilder(new ArchiveRouteBuilder());
 		main.run(args);
 	}
