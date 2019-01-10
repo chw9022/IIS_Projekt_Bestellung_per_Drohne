@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" id="Definitions_1whdbbm" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="2.2.3">
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" id="Definitions_1whdbbm" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="2.2.3">
   <bpmn:collaboration id="Collaboration_1vg6yec">
     <bpmn:participant id="Participant_1c21xix" name="Versandhaus" processRef="Process_0epxfrx" />
     <bpmn:participant id="Participant_0ovq4t7" name="Kunde" />
@@ -22,7 +22,7 @@
         <bpmn:flowNodeRef>Task_09ic365</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>ParallelGateway_0rvrjyh</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>ParallelGateway_1frcl75</bpmn:flowNodeRef>
-        <bpmn:flowNodeRef>Task_04k84ah</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>bestellung_archivieren</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>EndEvent_0lf30in</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>IntermediateThrowEvent_0l850a6</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>IntermediateCatchEvent_1dso6cl</bpmn:flowNodeRef>
@@ -74,7 +74,7 @@
       <bpmn:outgoing>SequenceFlow_06rsjfr</bpmn:outgoing>
       <bpmn:outgoing>SequenceFlow_071drwf</bpmn:outgoing>
     </bpmn:parallelGateway>
-    <bpmn:serviceTask id="Task_04k84ah" name="Bestellung archivieren">
+    <bpmn:serviceTask id="bestellung_archivieren" name="Bestellung archivieren" camunda:class="servicetasks.ArchiveOrder">
       <bpmn:incoming>SequenceFlow_06rsjfr</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_0c3grjv</bpmn:outgoing>
     </bpmn:serviceTask>
@@ -97,12 +97,12 @@
     <bpmn:sequenceFlow id="SequenceFlow_0rd6zzg" sourceRef="ParallelGateway_0rvrjyh" targetRef="IntermediateCatchEvent_1dso6cl" />
     <bpmn:sequenceFlow id="SequenceFlow_01ji91d" sourceRef="ParallelGateway_0rvrjyh" targetRef="Task_1huh6rg" />
     <bpmn:sequenceFlow id="SequenceFlow_1bu89ip" sourceRef="Task_1huh6rg" targetRef="Task_1122ynx" />
-    <bpmn:sequenceFlow id="SequenceFlow_0c3grjv" sourceRef="Task_04k84ah" targetRef="EndEvent_0lf30in" />
+    <bpmn:sequenceFlow id="SequenceFlow_0c3grjv" sourceRef="bestellung_archivieren" targetRef="EndEvent_0lf30in" />
     <bpmn:sequenceFlow id="SequenceFlow_11sw5ps" sourceRef="IntermediateThrowEvent_0l850a6" targetRef="ParallelGateway_1frcl75" />
     <bpmn:sequenceFlow id="SequenceFlow_0bwlh7n" sourceRef="Task_0yyti98" targetRef="ParallelGateway_1frcl75" />
     <bpmn:sequenceFlow id="SequenceFlow_071drwf" sourceRef="ParallelGateway_1frcl75" targetRef="ParallelGateway_1frcl75" />
     <bpmn:sequenceFlow id="SequenceFlow_0vfdnpu" sourceRef="IntermediateCatchEvent_1dso6cl" targetRef="ParallelGateway_1frcl75" />
-    <bpmn:sequenceFlow id="SequenceFlow_06rsjfr" sourceRef="ParallelGateway_1frcl75" targetRef="Task_04k84ah" />
+    <bpmn:sequenceFlow id="SequenceFlow_06rsjfr" sourceRef="ParallelGateway_1frcl75" targetRef="bestellung_archivieren" />
     <bpmn:sequenceFlow id="SequenceFlow_0mqkp4o" sourceRef="Task_1122ynx" targetRef="Task_1mhmdd1" />
     <bpmn:sequenceFlow id="SequenceFlow_0zoe9or" sourceRef="Task_1mhmdd1" targetRef="IntermediateThrowEvent_19ifuiy" />
     <bpmn:sequenceFlow id="SequenceFlow_1lroona" sourceRef="IntermediateThrowEvent_19ifuiy" targetRef="Task_0yyti98" />
@@ -190,9 +190,7 @@
       <bpmn:text>Randbedingungen:
 Kunde registriert
 Genug Ware auf Lager
-Eine Drohne pro Bestellung
-
-</bpmn:text>
+Eine Drohne pro Bestellung</bpmn:text>
     </bpmn:textAnnotation>
     <bpmn:association id="Association_0g4nggc" sourceRef="StartEvent_1e8e9sq" targetRef="TextAnnotation_0gdm077" />
     <bpmn:association id="Association_0nr3a85" sourceRef="StartEvent_1e8e9sq" targetRef="TextAnnotation_0mukbso" />
@@ -299,7 +297,7 @@ Eine Drohne pro Bestellung
         <di:waypoint x="1452" y="803" />
         <di:waypoint x="1479" y="803" />
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNShape id="ServiceTask_1ybdgbk_di" bpmnElement="Task_04k84ah">
+      <bpmndi:BPMNShape id="ServiceTask_1ybdgbk_di" bpmnElement="bestellung_archivieren">
         <dc:Bounds x="1232" y="300" width="100" height="80" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="EndEvent_0lf30in_di" bpmnElement="EndEvent_0lf30in">
