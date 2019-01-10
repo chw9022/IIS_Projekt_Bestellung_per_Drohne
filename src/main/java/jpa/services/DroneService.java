@@ -27,9 +27,8 @@ public class DroneService implements DroneServiceLocal {
     }
 
     @Override
-    public void setDroneStatus(DroneStatus status) {
-        // TODO Auto-generated method stub
-
+    public void setDroneStatus(int id, DroneStatus status) {
+        em.find(Drones.class, id).setStatus(status);
     }
 
 }

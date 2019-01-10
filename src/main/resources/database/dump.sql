@@ -97,5 +97,5 @@ INSERT INTO drone_status (status) VALUES("FLYING_FROM_CLIENT");
 INSERT INTO drone_status (status) VALUES("CHARGING");
 INSERT INTO drone_status (status) VALUES("ERROR");
 INSERT INTO drones (status) VALUES(1);
-INSERT INTO drones (status) VALUES(4);
+INSERT INTO drones (status) VALUES(1);
 INSERT INTO drones (status) VALUES(1);

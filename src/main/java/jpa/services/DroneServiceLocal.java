@@ -9,5 +9,5 @@ import javax.ejb.Local;
 @Local
 public interface DroneServiceLocal {
     DroneStatus getDroneStatus(int id);
-    void setDroneStatus(DroneStatus status);
+    void setDroneStatus(int id, DroneStatus status);
 }

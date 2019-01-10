@@ -1,12 +1,13 @@
 // #######################################
 // Author: Christian Wittmann
 // #######################################
-package jpa.ws;
+package jpa.webservices;
 
 import javax.inject.Inject;
 import javax.jws.WebMethod;
 import javax.jws.WebService;
 
+import jpa.entities.DroneStatus;
 import jpa.services.DroneService;
 
 @WebService
@@ -16,13 +17,16 @@ public class CheckDroneAvailable {
     DroneService droneService;
     
     @WebMethod
-    public void checkDroneAvailable(int id) {
-        
+    public boolean checkDroneAvailable() {
+
         // ...
         // TODO - currently just testing
         // ...
         
         System.out.println("Hello World");
-        System.out.println( droneService.getDroneStatus(id) );
+        // System.out.println( droneService.getDroneStatus(id) );
+        droneService.setDroneStatus(1, DroneStatus.FLYING_TO_CLIENT);
+        
+        return false;
     }
 }
