@@ -11,12 +11,20 @@ import org.apache.camel.main.Main;
 
 import camel.routes.OrderArchiveRouteBuilder;
 
-public class CamelApp {
-	public static void main(String[] args) throws Exception {
-		Main main = new Main();
+public class CamelApp extends Main {
+
+	public CamelApp() {
+		super();
+		this.initialize();
+		this.addRouteBuilders();
+	}
+
+	private void initialize() {
 		ConnectionFactory connectionFactory = new ActiveMQConnectionFactory("tcp://0.0.0.0:61616");
-		main.bind("jms", JmsComponent.jmsComponentAutoAcknowledge(connectionFactory));
-		main.addRouteBuilder(new OrderArchiveRouteBuilder());
-		main.run(args);
+		this.bind("jms", JmsComponent.jmsComponentAutoAcknowledge(connectionFactory));
+	}
+
+	private void addRouteBuilders() {
+		this.addRouteBuilder(new OrderArchiveRouteBuilder());
 	}
 }
