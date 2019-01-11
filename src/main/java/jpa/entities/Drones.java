@@ -18,10 +18,12 @@ public class Drones implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id")
 	private int id;
 
     @Enumerated(EnumType.ORDINAL)
+    @Column(name = "status")
     private DroneStatus status;
 
 	public Drones() {

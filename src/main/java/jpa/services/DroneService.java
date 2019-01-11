@@ -3,6 +3,8 @@
 // #######################################
 package jpa.services;
 
+import java.util.List;
+
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -18,6 +20,8 @@ import jpa.entities.Drones;
 @LocalBean
 public class DroneService implements DroneServiceLocal {
 
+    private static final int NOT_AVAILABLE = -1;
+    
     @PersistenceContext
     EntityManager em;
     
@@ -27,9 +31,23 @@ public class DroneService implements DroneServiceLocal {
     }
 
     @Override
-    public void setDroneStatus(DroneStatus status) {
-        // TODO Auto-generated method stub
+    public void setDroneStatus(int id, DroneStatus status) {
+        em.find(Drones.class, id).setStatus(status);
+    }
 
+    @Override
+    public boolean checkDroneAvailable() {
+        return getIdOfAvailableDrone() == NOT_AVAILABLE ? false : true;
+    }
+
+    @Override
+    public int getIdOfAvailableDrone() {
+        List<Integer> droneIds = em.createQuery("SELECT id FROM Drones d " +
+                                                "WHERE d.status LIKE :READY_TO_START", Integer.class)
+                                                .setParameter("READY_TO_START", DroneStatus.READY_TO_START)
+                                                .getResultList();
+        
+        return droneIds.isEmpty() ? NOT_AVAILABLE : droneIds.get(0);
     }
 
 }
