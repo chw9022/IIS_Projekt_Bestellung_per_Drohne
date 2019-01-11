@@ -11,7 +11,7 @@ import org.apache.camel.converter.jaxb.JaxbDataFormat;
 import org.apache.camel.model.dataformat.JsonLibrary;
 
 import jpa.entities.Article;
-import servicetasks.ArchiveOrder;
+import processengine.delegate.ArchiveOrder;
 
 public class OrderArchiveRouteBuilder extends RouteBuilder {
 	private static String directory_archive = "file:/home/lars/Downloads";
