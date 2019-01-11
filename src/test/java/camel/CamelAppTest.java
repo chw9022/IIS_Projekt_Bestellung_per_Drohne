@@ -1,3 +1,6 @@
+// #######################################
+// Author: Felix Ziegner
+// #######################################
 package camel;
 
 import static org.junit.Assert.assertFalse;
@@ -14,7 +17,7 @@ import camel.routes.OrderArchiveRouteBuilder;
 public class CamelAppTest {
 
 	static {
-		LogFactory.useSlf4jLogging(); // MyBatis
+		LogFactory.useSlf4jLogging();
 	}
 
 	@Before
