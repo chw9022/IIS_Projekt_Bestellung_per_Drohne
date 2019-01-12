@@ -3,6 +3,8 @@
 // #######################################
 package jpa.entities;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -11,10 +13,15 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
 
 @Entity
 @Table(name = "clients")
-public class Client {
+@XmlRootElement(name = "client")
+public class Client implements Serializable {
+	private static final long serialVersionUID = 1L;
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
@@ -30,6 +37,7 @@ public class Client {
 	@Enumerated(EnumType.ORDINAL)
 	private ClientType clienttype;
 
+	@XmlElement
 	public String getFirstname() {
 		return firstname;
 	}
@@ -38,6 +46,7 @@ public class Client {
 		this.firstname = firstname;
 	}
 
+	@XmlElement
 	public String getLastname() {
 		return lastname;
 	}
@@ -46,6 +55,7 @@ public class Client {
 		this.lastname = lastname;
 	}
 
+	@XmlElement
 	public String getStreet() {
 		return street;
 	}
@@ -54,6 +64,7 @@ public class Client {
 		this.street = street;
 	}
 
+	@XmlElement
 	public String getPlace() {
 		return place;
 	}
@@ -62,6 +73,7 @@ public class Client {
 		this.place = place;
 	}
 
+	@XmlElement
 	public ClientType getClienttype() {
 		return clienttype;
 	}
@@ -70,6 +82,7 @@ public class Client {
 		this.clienttype = clienttype;
 	}
 
+	@XmlElement
 	public int getId() {
 		return id;
 	}

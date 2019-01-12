@@ -19,9 +19,12 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
 
 @Entity
 @Table(name = "orders")
+@XmlRootElement(name = "order")
 public class Order implements Serializable {
 	private static final long serialVersionUID = 1L;
 
@@ -39,10 +42,12 @@ public class Order implements Serializable {
 	@Column(name = "closed_at")
 	private Date closed_at;
 
+	@XmlElement
 	public int getId() {
 		return id;
 	}
 
+	@XmlElement
 	public List<OrderPosition> getOrderPositions() {
 		return orderPositions;
 	}
@@ -51,6 +56,7 @@ public class Order implements Serializable {
 		this.orderPositions.add(orderPosition);
 	}
 
+	@XmlElement
 	public Client getClient() {
 		return client;
 	}
@@ -59,6 +65,7 @@ public class Order implements Serializable {
 		this.client = client;
 	}
 
+	@XmlElement
 	public Date getOrderdate() {
 		return orderdate;
 	}
@@ -67,6 +74,7 @@ public class Order implements Serializable {
 		this.orderdate = orderdate;
 	}
 
+	@XmlElement
 	public Date getClosed_at() {
 		return closed_at;
 	}
