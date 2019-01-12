@@ -13,7 +13,7 @@ import javax.persistence.Query;
 import jpa.entities.Article;
 
 public class Articles {
-	EntityManagerFactory emFactory = Persistence.createEntityManagerFactory("GroceryShopPersistence");
+	EntityManagerFactory emFactory = Persistence.createEntityManagerFactory("Bestellung_per_Drohne");
 	EntityManager entityManager = emFactory.createEntityManager();
 
 	public void addArticle(Article article) {
@@ -25,7 +25,7 @@ public class Articles {
 	}
 
 	public Article findById(int articleId) {
-		  return entityManager.find(Article.class, articleId);
+		return entityManager.find(Article.class, articleId);
 	}
 
 	public List<Article> findByName(String articleName) {

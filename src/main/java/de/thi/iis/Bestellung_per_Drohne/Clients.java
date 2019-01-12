@@ -12,8 +12,8 @@ import javax.persistence.Query;
 
 import jpa.entities.Client;
 
-public class Clients {
-	EntityManagerFactory emFactory = Persistence.createEntityManagerFactory("GroceryShopPersistence");
+public class Clients{
+	EntityManagerFactory emFactory = Persistence.createEntityManagerFactory("Bestellung_per_Drohne");
 	EntityManager entityManager = emFactory.createEntityManager();
 
 	public void addClient(Client client) {
