@@ -11,7 +11,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 import jpa.entities.DroneStatus;
-import jpa.entities.Drones;
+import jpa.entities.Drone;
 
 /**
  * Session Bean implementation class DroneService
@@ -27,12 +27,12 @@ public class DroneService implements DroneServiceLocal {
     
     @Override
     public DroneStatus getDroneStatus(int id) {
-        return em.find(Drones.class, id).getStatus();
+        return em.find(Drone.class, id).getStatus();
     }
 
     @Override
     public void setDroneStatus(int id, DroneStatus status) {
-        em.find(Drones.class, id).setStatus(status);
+        em.find(Drone.class, id).setStatus(status);
     }
 
     @Override
@@ -42,7 +42,7 @@ public class DroneService implements DroneServiceLocal {
 
     @Override
     public int getIdOfAvailableDrone() {
-        List<Integer> droneIds = em.createQuery("SELECT id FROM Drones d " +
+        List<Integer> droneIds = em.createQuery("SELECT id FROM Drone d " +
                                                 "WHERE d.status LIKE :READY_TO_START", Integer.class)
                                                 .setParameter("READY_TO_START", DroneStatus.READY_TO_START)
                                                 .getResultList();

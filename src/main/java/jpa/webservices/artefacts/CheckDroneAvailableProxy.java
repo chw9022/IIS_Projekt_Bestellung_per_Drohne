@@ -1,8 +1,8 @@
-package jpa.webservices.artifacts;
+package jpa.webservices.artefacts;
 
-public class CheckDroneAvailableProxy implements jpa.webservices.artifacts.CheckDroneAvailable {
+public class CheckDroneAvailableProxy implements jpa.webservices.artefacts.CheckDroneAvailable {
   private String _endpoint = null;
-  private jpa.webservices.artifacts.CheckDroneAvailable checkDroneAvailable = null;
+  private jpa.webservices.artefacts.CheckDroneAvailable checkDroneAvailable = null;
   
   public CheckDroneAvailableProxy() {
     _initCheckDroneAvailableProxy();
@@ -15,7 +15,7 @@ public class CheckDroneAvailableProxy implements jpa.webservices.artifacts.Check
   
   private void _initCheckDroneAvailableProxy() {
     try {
-      checkDroneAvailable = (new jpa.webservices.artifacts.CheckDroneAvailableServiceLocator()).getCheckDroneAvailablePort();
+      checkDroneAvailable = (new jpa.webservices.artefacts.CheckDroneAvailableServiceLocator()).getCheckDroneAvailablePort();
       if (checkDroneAvailable != null) {
         if (_endpoint != null)
           ((javax.xml.rpc.Stub)checkDroneAvailable)._setProperty("javax.xml.rpc.service.endpoint.address", _endpoint);
@@ -38,7 +38,7 @@ public class CheckDroneAvailableProxy implements jpa.webservices.artifacts.Check
     
   }
   
-  public jpa.webservices.artifacts.CheckDroneAvailable getCheckDroneAvailable() {
+  public jpa.webservices.artefacts.CheckDroneAvailable getCheckDroneAvailable() {
     if (checkDroneAvailable == null)
       _initCheckDroneAvailableProxy();
     return checkDroneAvailable;

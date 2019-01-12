@@ -13,7 +13,7 @@ import javax.persistence.*;
  */
 @Entity
 @Table(name = "drones")
-public class Drones implements Serializable {
+public class Drone implements Serializable {
     
 	private static final long serialVersionUID = 1L;
 
@@ -26,7 +26,7 @@ public class Drones implements Serializable {
     @Column(name = "status")
     private DroneStatus status;
 
-	public Drones() {
+	public Drone() {
 	}
 
 	public int getId() {

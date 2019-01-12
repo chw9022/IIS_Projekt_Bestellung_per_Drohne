@@ -6,8 +6,8 @@ package processengine.delegate;
 import org.camunda.bpm.engine.delegate.DelegateExecution;
 import org.camunda.bpm.engine.delegate.JavaDelegate;
 
-import jpa.webservices.artifacts.CheckDroneAvailable;
-import jpa.webservices.artifacts.CheckDroneAvailableProxy;
+import jpa.webservices.artefacts.CheckDroneAvailable;
+import jpa.webservices.artefacts.CheckDroneAvailableProxy;
 
 
 public class CallCheckDroneAvailable implements JavaDelegate {

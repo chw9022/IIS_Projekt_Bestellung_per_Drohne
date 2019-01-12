@@ -5,9 +5,9 @@
  * by the Apache Axis 1.4 Apr 22, 2006 (06:55:48 PDT) WSDL2Java emitter.
  */
 
-package jpa.webservices.artifacts;
+package jpa.webservices.artefacts;
 
-public class CheckDroneAvailableServiceLocator extends org.apache.axis.client.Service implements jpa.webservices.artifacts.CheckDroneAvailableService {
+public class CheckDroneAvailableServiceLocator extends org.apache.axis.client.Service implements jpa.webservices.artefacts.CheckDroneAvailableService {
 
     public CheckDroneAvailableServiceLocator() {
     }
@@ -39,7 +39,7 @@ public class CheckDroneAvailableServiceLocator extends org.apache.axis.client.Se
         CheckDroneAvailablePortWSDDServiceName = name;
     }
 
-    public jpa.webservices.artifacts.CheckDroneAvailable getCheckDroneAvailablePort() throws javax.xml.rpc.ServiceException {
+    public jpa.webservices.artefacts.CheckDroneAvailable getCheckDroneAvailablePort() throws javax.xml.rpc.ServiceException {
        java.net.URL endpoint;
         try {
             endpoint = new java.net.URL(CheckDroneAvailablePort_address);
@@ -50,9 +50,9 @@ public class CheckDroneAvailableServiceLocator extends org.apache.axis.client.Se
         return getCheckDroneAvailablePort(endpoint);
     }
 
-    public jpa.webservices.artifacts.CheckDroneAvailable getCheckDroneAvailablePort(java.net.URL portAddress) throws javax.xml.rpc.ServiceException {
+    public jpa.webservices.artefacts.CheckDroneAvailable getCheckDroneAvailablePort(java.net.URL portAddress) throws javax.xml.rpc.ServiceException {
         try {
-            jpa.webservices.artifacts.CheckDroneAvailableServiceSoapBindingStub _stub = new jpa.webservices.artifacts.CheckDroneAvailableServiceSoapBindingStub(portAddress, this);
+            jpa.webservices.artefacts.CheckDroneAvailableServiceSoapBindingStub _stub = new jpa.webservices.artefacts.CheckDroneAvailableServiceSoapBindingStub(portAddress, this);
             _stub.setPortName(getCheckDroneAvailablePortWSDDServiceName());
             return _stub;
         }
@@ -72,8 +72,8 @@ public class CheckDroneAvailableServiceLocator extends org.apache.axis.client.Se
      */
     public java.rmi.Remote getPort(Class serviceEndpointInterface) throws javax.xml.rpc.ServiceException {
         try {
-            if (jpa.webservices.artifacts.CheckDroneAvailable.class.isAssignableFrom(serviceEndpointInterface)) {
-                jpa.webservices.artifacts.CheckDroneAvailableServiceSoapBindingStub _stub = new jpa.webservices.artifacts.CheckDroneAvailableServiceSoapBindingStub(new java.net.URL(CheckDroneAvailablePort_address), this);
+            if (jpa.webservices.artefacts.CheckDroneAvailable.class.isAssignableFrom(serviceEndpointInterface)) {
+                jpa.webservices.artefacts.CheckDroneAvailableServiceSoapBindingStub _stub = new jpa.webservices.artefacts.CheckDroneAvailableServiceSoapBindingStub(new java.net.URL(CheckDroneAvailablePort_address), this);
                 _stub.setPortName(getCheckDroneAvailablePortWSDDServiceName());
                 return _stub;
             }
