@@ -3,6 +3,11 @@
 // #######################################
 package processengine.delegate;
 
+import java.io.StringWriter;
+
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.Marshaller;
+
 import org.camunda.bpm.engine.delegate.DelegateExecution;
 import org.camunda.bpm.engine.delegate.JavaDelegate;
 
@@ -18,7 +23,11 @@ public class ArchiveOrder implements JavaDelegate {
 		JMSManager jmsManager = new JMSManager();
 		Order orderToArchive = (Order) execution.getVariable(ORDER_VARIABLE);
 		orderToArchive.closeOrder();
-		jmsManager.sendMessage(orderToArchive, QUEUE_ORDER_ARCHIVE);
+		StringWriter stringWriter = new StringWriter();
+		JAXBContext JaxbContext = JAXBContext.newInstance(Order.class);
+		Marshaller marshaller = JaxbContext.createMarshaller();
+		marshaller.marshal(orderToArchive, stringWriter);
+		jmsManager.sendMessage(stringWriter.toString(), "order-archive");
 		execution.setVariable(ORDER_VARIABLE, orderToArchive);
 	}
 }
