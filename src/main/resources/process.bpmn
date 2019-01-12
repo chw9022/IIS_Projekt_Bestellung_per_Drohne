@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" id="Definitions_1whdbbm" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="2.2.3">
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" id="Definitions_1whdbbm" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="2.2.3">
   <bpmn:collaboration id="Collaboration_1vg6yec">
     <bpmn:participant id="Participant_1c21xix" name="Versandhaus" processRef="Process_0epxfrx" />
     <bpmn:participant id="Participant_0ovq4t7" name="Kunde" />
@@ -9,7 +9,7 @@
     <bpmn:messageFlow id="MessageFlow_1ej3gzj" sourceRef="StartEvent_1rnkzgz" targetRef="Participant_0ovq4t7" />
     <bpmn:messageFlow id="MessageFlow_1narn8i" sourceRef="Participant_0ovq4t7" targetRef="IntermediateCatchEvent_1dso6cl" />
   </bpmn:collaboration>
-  <bpmn:process id="Process_0epxfrx" isExecutable="false">
+  <bpmn:process id="Process_0epxfrx" isExecutable="true">
     <bpmn:laneSet id="LaneSet_11ghxc2">
       <bpmn:lane id="Lane_1yegv6h" name="Logistik">
         <bpmn:flowNodeRef>Task_1122ynx</bpmn:flowNodeRef>
@@ -32,7 +32,7 @@
         <bpmn:flowNodeRef>Task_0a2vxb7</bpmn:flowNodeRef>
       </bpmn:lane>
     </bpmn:laneSet>
-    <bpmn:serviceTask id="Task_0e48ssh" name="Lieferschein erstellen">
+    <bpmn:serviceTask id="Task_0e48ssh" name="Lieferschein erstellen" camunda:class="processengine.delegate.DummyDelegator">
       <bpmn:incoming>SequenceFlow_1uegi7w</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_1va1p93</bpmn:outgoing>
       <bpmn:property id="Property_1t1i9wt" name="__targetRef_placeholder" />
@@ -48,7 +48,7 @@
     <bpmn:dataObject id="DataObject_1t8vchj" />
     <bpmn:dataObjectReference id="DataObjectReference_10k51wu" name="Lieferschein" dataObjectRef="DataObject_162dxvp" />
     <bpmn:dataObject id="DataObject_162dxvp" />
-    <bpmn:businessRuleTask id="Task_09ic365" name="Kundenrabatt ermitteln">
+    <bpmn:businessRuleTask id="Task_09ic365" name="Kundenrabatt ermitteln" camunda:class="processengine.delegate.DummyDelegator">
       <bpmn:incoming>SequenceFlow_1va1p93</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_15sejlt</bpmn:outgoing>
     </bpmn:businessRuleTask>
@@ -64,7 +64,7 @@
     <bpmn:intermediateCatchEvent id="IntermediateThrowEvent_0l850a6" name="Kunde hat Drohnenlieferungerhalten">
       <bpmn:incoming>SequenceFlow_1ba510c</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_11sw5ps</bpmn:outgoing>
-      <bpmn:messageEventDefinition id="MessageEventDefinition_1o7vfxu" />
+      <bpmn:messageEventDefinition id="MessageEventDefinition_1o7vfxu" messageRef="Message_0d7e72q" />
     </bpmn:intermediateCatchEvent>
     <bpmn:parallelGateway id="ParallelGateway_1frcl75">
       <bpmn:incoming>SequenceFlow_071drwf</bpmn:incoming>
@@ -81,7 +81,7 @@
     <bpmn:intermediateCatchEvent id="IntermediateCatchEvent_1dso6cl" name="Kunde hat Rechnung bezahlt">
       <bpmn:incoming>SequenceFlow_0rd6zzg</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_0vfdnpu</bpmn:outgoing>
-      <bpmn:messageEventDefinition id="MessageEventDefinition_1cr47o7" />
+      <bpmn:messageEventDefinition id="MessageEventDefinition_1cr47o7" messageRef="Message_0d7e72q" />
     </bpmn:intermediateCatchEvent>
     <bpmn:intermediateThrowEvent id="StartEvent_1rnkzgz" name="Rechnung übermitteln">
       <bpmn:incoming>SequenceFlow_0k0rrjb</bpmn:incoming>
@@ -108,7 +108,7 @@
     <bpmn:sequenceFlow id="SequenceFlow_1lroona" sourceRef="IntermediateThrowEvent_19ifuiy" targetRef="Task_0yyti98" />
     <bpmn:startEvent id="StartEvent_1e8e9sq" name="Bestelleingang">
       <bpmn:outgoing>SequenceFlow_1uegi7w</bpmn:outgoing>
-      <bpmn:messageEventDefinition />
+      <bpmn:messageEventDefinition messageRef="Message_0d7e72q" />
     </bpmn:startEvent>
     <bpmn:subProcess id="Task_1122ynx" name="Drohne vorbereiten">
       <bpmn:incoming>SequenceFlow_1bu89ip</bpmn:incoming>
@@ -116,11 +116,11 @@
       <bpmn:startEvent id="StartEvent_14il0k1" name="Drohne soll zum Versand vorbereitet werden">
         <bpmn:outgoing>SequenceFlow_06m0mim</bpmn:outgoing>
       </bpmn:startEvent>
-      <bpmn:serviceTask id="ServiceTask_0i5b3qw" name="Drohnenbestand prüfen">
+      <bpmn:serviceTask id="ServiceTask_0i5b3qw" name="Drohnenbestand prüfen" camunda:class="processengine.delegate.DummyDelegator">
         <bpmn:incoming>SequenceFlow_0b3gpn1</bpmn:incoming>
         <bpmn:outgoing>SequenceFlow_1o8huch</bpmn:outgoing>
       </bpmn:serviceTask>
-      <bpmn:exclusiveGateway id="ExclusiveGateway_0sftkk7" name="Einsatzbereite Drohne vorhanden?">
+      <bpmn:exclusiveGateway id="ExclusiveGateway_0sftkk7" name="Einsatzbereite Drohne vorhanden?" default="SequenceFlow_07ohx8h">
         <bpmn:incoming>SequenceFlow_1o8huch</bpmn:incoming>
         <bpmn:outgoing>SequenceFlow_0pdbpin</bpmn:outgoing>
         <bpmn:outgoing>SequenceFlow_07ohx8h</bpmn:outgoing>
@@ -133,7 +133,9 @@
       <bpmn:intermediateCatchEvent id="StartEvent_1e54djw" name="Bestimmte Zeit warten">
         <bpmn:incoming>SequenceFlow_0pdbpin</bpmn:incoming>
         <bpmn:outgoing>SequenceFlow_1qkknhw</bpmn:outgoing>
-        <bpmn:timerEventDefinition />
+        <bpmn:timerEventDefinition>
+          <bpmn:timeDuration xsi:type="bpmn:tFormalExpression">2</bpmn:timeDuration>
+        </bpmn:timerEventDefinition>
       </bpmn:intermediateCatchEvent>
       <bpmn:endEvent id="EndEvent_0r1hnfy" name="Drohne versandbereit">
         <bpmn:incoming>SequenceFlow_13lm4wf</bpmn:incoming>
@@ -141,7 +143,9 @@
       <bpmn:sequenceFlow id="SequenceFlow_13lm4wf" sourceRef="Task_1ubschf" targetRef="EndEvent_0r1hnfy" />
       <bpmn:sequenceFlow id="SequenceFlow_0b3gpn1" sourceRef="ExclusiveGateway_05wya4r" targetRef="ServiceTask_0i5b3qw" />
       <bpmn:sequenceFlow id="SequenceFlow_1o8huch" sourceRef="ServiceTask_0i5b3qw" targetRef="ExclusiveGateway_0sftkk7" />
-      <bpmn:sequenceFlow id="SequenceFlow_0pdbpin" name="Nein" sourceRef="ExclusiveGateway_0sftkk7" targetRef="StartEvent_1e54djw" />
+      <bpmn:sequenceFlow id="SequenceFlow_0pdbpin" name="Nein" sourceRef="ExclusiveGateway_0sftkk7" targetRef="StartEvent_1e54djw">
+        <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${false}</bpmn:conditionExpression>
+      </bpmn:sequenceFlow>
       <bpmn:sequenceFlow id="SequenceFlow_1qkknhw" sourceRef="StartEvent_1e54djw" targetRef="ExclusiveGateway_05wya4r" />
       <bpmn:sequenceFlow id="SequenceFlow_07ohx8h" name="Ja" sourceRef="ExclusiveGateway_0sftkk7" targetRef="ServiceTask_1tk8dgb" />
       <bpmn:manualTask id="Task_1ubschf" name="Beladen der Drohne">
@@ -162,11 +166,20 @@
       <bpmn:dataObject id="DataObject_0fhxfd7" />
       <bpmn:sequenceFlow id="SequenceFlow_1ihmiff" sourceRef="ServiceTask_1tk8dgb" targetRef="Task_1ubschf" />
     </bpmn:subProcess>
-    <bpmn:serviceTask id="Task_1huh6rg" name="Warenbestand aktualisieren">
+    <bpmn:serviceTask id="Task_1huh6rg" name="Warenbestand aktualisieren" camunda:class="processengine.delegate.DummyDelegator">
       <bpmn:incoming>SequenceFlow_01ji91d</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_1bu89ip</bpmn:outgoing>
     </bpmn:serviceTask>
-    <bpmn:userTask id="Task_1mhmdd1" name="Drohne versenden">
+    <bpmn:userTask id="Task_1mhmdd1" name="Drohne versenden" camunda:assignee="fozzi">
+      <bpmn:extensionElements>
+        <camunda:formData>
+          <camunda:formField id="orderid" label="OrderNumber" type="long" defaultValue="${order.id}">
+            <camunda:validation>
+              <camunda:constraint name="readonly" />
+            </camunda:validation>
+          </camunda:formField>
+        </camunda:formData>
+      </bpmn:extensionElements>
       <bpmn:incoming>SequenceFlow_0mqkp4o</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_0zoe9or</bpmn:outgoing>
     </bpmn:userTask>
@@ -179,7 +192,7 @@
       <bpmn:incoming>SequenceFlow_1lroona</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_0bwlh7n</bpmn:outgoing>
     </bpmn:userTask>
-    <bpmn:serviceTask id="Task_0a2vxb7" name="Rechnung generieren">
+    <bpmn:serviceTask id="Task_0a2vxb7" name="Rechnung generieren" camunda:class="processengine.delegate.DummyDelegator">
       <bpmn:incoming>SequenceFlow_15sejlt</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_0k0rrjb</bpmn:outgoing>
     </bpmn:serviceTask>
@@ -195,6 +208,7 @@ Eine Drohne pro Bestellung</bpmn:text>
     <bpmn:association id="Association_0g4nggc" sourceRef="StartEvent_1e8e9sq" targetRef="TextAnnotation_0gdm077" />
     <bpmn:association id="Association_0nr3a85" sourceRef="StartEvent_1e8e9sq" targetRef="TextAnnotation_0mukbso" />
   </bpmn:process>
+  <bpmn:message id="Message_0d7e72q" name="DummyMessage" />
   <bpmndi:BPMNDiagram id="BPMNDiagram_1">
     <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Collaboration_1vg6yec">
       <bpmndi:BPMNShape id="Participant_1c21xix_di" bpmnElement="Participant_1c21xix">
@@ -274,7 +288,7 @@ Eine Drohne pro Bestellung</bpmn:text>
         <di:waypoint x="863" y="764" />
         <di:waypoint x="924" y="764" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="868" y="746" width="12" height="14" />
+          <dc:Bounds x="868" y="746" width="13" height="14" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNShape id="ManualTask_16nsek2_di" bpmnElement="Task_1ubschf">
