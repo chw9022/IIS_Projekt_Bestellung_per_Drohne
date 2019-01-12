@@ -25,7 +25,7 @@ public class BPMNTest {
 	@Rule
 	public static ProcessEngineRule rule = TestCoverageProcessEngineRuleBuilder.create().build();
 
-	private static final String PROCESS_DEFINITION_KEY = "Process_0epxfrx";
+	private static final String PROCESS_DEFINITION_KEY = "Process_Order_per_Drone";
 
 	static {
 		LogFactory.useSlf4jLogging(); // MyBatis
