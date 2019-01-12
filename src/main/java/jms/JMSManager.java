@@ -8,7 +8,6 @@ package jms;
 import java.io.Serializable;
 
 import javax.jms.Connection;
-import javax.jms.ConnectionFactory;
 import javax.jms.MessageProducer;
 import javax.jms.ObjectMessage;
 import javax.jms.Queue;
@@ -19,10 +18,12 @@ import org.apache.activemq.ActiveMQConnectionFactory;
 
 public class JMSManager {
 	public void sendMessage(final Serializable message, final String queueName) throws Exception {
-		ConnectionFactory connectionFactory = new ActiveMQConnectionFactory(ActiveMQConnection.DEFAULT_BROKER_URL);
+		ActiveMQConnectionFactory connectionFactory = new ActiveMQConnectionFactory(
+				ActiveMQConnection.DEFAULT_BROKER_URL);
+		connectionFactory.setTrustAllPackages(true);
 		Connection connection = connectionFactory.createConnection();
 		Session session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
-		Queue queue = session.createQueue("example-queue");
+		Queue queue = session.createQueue(queueName);
 		MessageProducer producer = session.createProducer(queue);
 		connection.start();
 		ObjectMessage m1 = session.createObjectMessage();
