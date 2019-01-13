@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" id="Definitions_1whdbbm" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="2.0.3">
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" id="Definitions_1whdbbm" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="2.2.3">
   <bpmn:collaboration id="Collaboration_1vg6yec">
     <bpmn:participant id="Participant_1c21xix" name="Versandhaus" processRef="Process_Order_per_Drone" />
     <bpmn:participant id="Participant_0ovq4t7" name="Kunde" />
     <bpmn:messageFlow id="MessageFlow_1jnnbk9" sourceRef="Participant_0ovq4t7" targetRef="StartEvent_1e8e9sq" />
     <bpmn:messageFlow id="MessageFlow_0tz6yta" sourceRef="Participant_0ovq4t7" targetRef="IntermediateThrowEvent_0l850a6" />
-    <bpmn:messageFlow id="MessageFlow_0o6n9j8" sourceRef="IntermediateThrowEvent_19ifuiy" targetRef="Participant_0ovq4t7" />
+    <bpmn:messageFlow id="MessageFlow_0o6n9j8" sourceRef="sendDroneTimeOfArrival" targetRef="Participant_0ovq4t7" />
     <bpmn:messageFlow id="MessageFlow_1ej3gzj" sourceRef="StartEvent_1rnkzgz" targetRef="Participant_0ovq4t7" />
     <bpmn:messageFlow id="MessageFlow_1narn8i" sourceRef="Participant_0ovq4t7" targetRef="IntermediateCatchEvent_1dso6cl" />
   </bpmn:collaboration>
@@ -14,7 +14,7 @@
       <bpmn:lane id="Lane_1yegv6h" name="Logistik">
         <bpmn:flowNodeRef>Task_1122ynx</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Task_1mhmdd1</bpmn:flowNodeRef>
-        <bpmn:flowNodeRef>IntermediateThrowEvent_19ifuiy</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>sendDroneTimeOfArrival</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Task_0yyti98</bpmn:flowNodeRef>
       </bpmn:lane>
       <bpmn:lane id="Lane_14idq8o" name="Service">
@@ -104,8 +104,8 @@
     <bpmn:sequenceFlow id="SequenceFlow_0vfdnpu" sourceRef="IntermediateCatchEvent_1dso6cl" targetRef="ParallelGateway_1frcl75" />
     <bpmn:sequenceFlow id="SequenceFlow_06rsjfr" sourceRef="ParallelGateway_1frcl75" targetRef="bestellung_archivieren" />
     <bpmn:sequenceFlow id="SequenceFlow_0mqkp4o" sourceRef="Task_1122ynx" targetRef="Task_1mhmdd1" />
-    <bpmn:sequenceFlow id="SequenceFlow_0zoe9or" sourceRef="Task_1mhmdd1" targetRef="IntermediateThrowEvent_19ifuiy" />
-    <bpmn:sequenceFlow id="SequenceFlow_1lroona" sourceRef="IntermediateThrowEvent_19ifuiy" targetRef="Task_0yyti98" />
+    <bpmn:sequenceFlow id="SequenceFlow_0zoe9or" sourceRef="Task_1mhmdd1" targetRef="sendDroneTimeOfArrival" />
+    <bpmn:sequenceFlow id="SequenceFlow_1lroona" sourceRef="sendDroneTimeOfArrival" targetRef="Task_0yyti98" />
     <bpmn:startEvent id="StartEvent_1e8e9sq" name="Bestelleingang">
       <bpmn:outgoing>SequenceFlow_1uegi7w</bpmn:outgoing>
       <bpmn:messageEventDefinition messageRef="Message_0d7e72q" />
@@ -185,10 +185,10 @@
       <bpmn:incoming>SequenceFlow_0mqkp4o</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_0zoe9or</bpmn:outgoing>
     </bpmn:userTask>
-    <bpmn:intermediateThrowEvent id="IntermediateThrowEvent_19ifuiy" name="Übermittlung der voraussichtlichen Ankunftszeit">
+    <bpmn:intermediateThrowEvent id="sendDroneTimeOfArrival" name="Übermittlung der voraussichtlichen Ankunftszeit">
       <bpmn:incoming>SequenceFlow_0zoe9or</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_1lroona</bpmn:outgoing>
-      <bpmn:messageEventDefinition />
+      <bpmn:messageEventDefinition camunda:class="processengine.delegate.SendDroneTimeOfArrival" />
     </bpmn:intermediateThrowEvent>
     <bpmn:userTask id="Task_0yyti98" name="Drohne eingetroffen">
       <bpmn:incoming>SequenceFlow_1lroona</bpmn:incoming>
@@ -296,10 +296,10 @@ Eine Drohne pro Bestellung</bpmn:text>
       <bpmndi:BPMNShape id="ManualTask_16nsek2_di" bpmnElement="Task_1ubschf">
         <dc:Bounds x="1080" y="724" width="100" height="80" />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="IntermediateThrowEvent_075itij_di" bpmnElement="IntermediateThrowEvent_19ifuiy">
+      <bpmndi:BPMNShape id="IntermediateThrowEvent_075itij_di" bpmnElement="sendDroneTimeOfArrival">
         <dc:Bounds x="1479" y="785" width="36" height="36" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="1455" y="831" width="84" height="40" />
+          <dc:Bounds x="1455" y="831" width="85" height="40" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="ServiceTask_12kp90g_di" bpmnElement="Task_1huh6rg">
