@@ -10,7 +10,6 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
-import jpa.entities.DroneStatus;
 import jpa.entities.Drone;
 
 /**
@@ -19,35 +18,42 @@ import jpa.entities.Drone;
 @Stateless
 @LocalBean
 public class DroneService implements DroneServiceLocal {
-
-    private static final int NOT_AVAILABLE = -1;
+    
+    private static final int NOT_AVAILABLE = 0;
     
     @PersistenceContext
     EntityManager em;
     
     @Override
-    public DroneStatus getDroneStatus(int id) {
-        return em.find(Drone.class, id).getStatus();
+    public boolean isDroneAvailable(int id) {
+        return em.find(Drone.class, id).isAvailable();
     }
 
     @Override
-    public void setDroneStatus(int id, DroneStatus status) {
-        em.find(Drone.class, id).setStatus(status);
-    }
-
-    @Override
-    public boolean checkDroneAvailable() {
-        return getIdOfAvailableDrone() == NOT_AVAILABLE ? false : true;
+    public boolean isAnyDroneAvailable() {
+        int idOfAvailableDrone = getIdOfAvailableDrone();
+        
+        if (idOfAvailableDrone == NOT_AVAILABLE) {
+            return false;
+        }
+        else {
+            setDroneAvailable(idOfAvailableDrone, false);
+            return true;
+        }
     }
 
     @Override
     public int getIdOfAvailableDrone() {
+        @SuppressWarnings("unchecked")
         List<Integer> droneIds = em.createQuery("SELECT id FROM Drone d " +
-                                                "WHERE d.status LIKE :READY_TO_START", Integer.class)
-                                                .setParameter("READY_TO_START", DroneStatus.READY_TO_START)
+                                                "WHERE d.available = TRUE")
                                                 .getResultList();
         
         return droneIds.isEmpty() ? NOT_AVAILABLE : droneIds.get(0);
     }
 
+    @Override
+    public void setDroneAvailable(int id, boolean available) {
+        em.find(Drone.class, id).setAvailable(available);
+    }
 }

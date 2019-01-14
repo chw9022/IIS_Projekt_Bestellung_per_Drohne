@@ -3,13 +3,16 @@
 // #######################################
 package jpa.services;
 
-import jpa.entities.DroneStatus;
 import javax.ejb.Local;
 
 @Local
 public interface DroneServiceLocal {
-    boolean checkDroneAvailable();
+    
+    // Getter
+    boolean isDroneAvailable(int id);
+    boolean isAnyDroneAvailable();
     int getIdOfAvailableDrone();
-    DroneStatus getDroneStatus(int id);
-    void setDroneStatus(int id, DroneStatus status);
+    
+    // Setter
+    void setDroneAvailable(int id, boolean available);
 }
