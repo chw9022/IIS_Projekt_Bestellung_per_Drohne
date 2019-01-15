@@ -1,7 +1,7 @@
+package routes;
 // #######################################
 // Author: Felix Ziegner
 // #######################################
-package iis.project.camel.routes;
 
 import javax.xml.bind.JAXBContext;
 
@@ -10,14 +10,14 @@ import org.apache.camel.builder.RouteBuilder;
 import org.apache.camel.converter.jaxb.JaxbDataFormat;
 import org.apache.camel.model.dataformat.JsonLibrary;
 
-import iis.project.processengine.delegate.ArchiveOrder;
+
 import iis.project.jpa.entities.Order;
 
 public class OrderArchiveRouteBuilder extends RouteBuilder {
 
 	@Override
 	public void configure() throws Exception {
-		Endpoint source = endpoint("jms:queue:" + ArchiveOrder.QUEUE_ORDER_ARCHIVE);
+		Endpoint source = endpoint("jms:queue:archive-order");
 		Endpoint destination1 = endpoint("file:/home/lars/Downloads");
 		Endpoint destination2 = endpoint("jms:queue:order-archive-external");
 

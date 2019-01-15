@@ -1,7 +1,7 @@
 // #######################################
 // Author: Felix Ziegner
 // #######################################
-package iis.project.camel;
+
 
 import javax.jms.ConnectionFactory;
 
@@ -9,7 +9,9 @@ import org.apache.activemq.ActiveMQConnectionFactory;
 import org.apache.camel.component.jms.JmsComponent;
 import org.apache.camel.main.Main;
 
-import iis.project.camel.routes.OrderArchiveRouteBuilder;
+import routes.OrderArchiveRouteBuilder;
+
+
 
 public class CamelApp extends Main {
 
