@@ -7,8 +7,6 @@ import org.camunda.bpm.engine.ProcessEngine;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 
-import iis.project.processengine.adapter.CamundaMessageAdapter;
-
 /**
  * Process Application exposing this application's resources the process engine.
  */
