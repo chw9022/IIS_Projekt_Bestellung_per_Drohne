@@ -13,7 +13,7 @@ import org.junit.ClassRule;
 import org.junit.Rule;
 import org.junit.Test;
 
-import camel.CamelApp;
+import iis.project.camel.CamelApp;
 import jpa.entities.Order;
 
 /**
@@ -25,7 +25,7 @@ public class BPMNTest {
 	@Rule
 	public static ProcessEngineRule rule = TestCoverageProcessEngineRuleBuilder.create().build();
 
-	private static final String PROCESS_DEFINITION_KEY = "Process_Order_per_Drone";
+	private static final String PROCESS_DEFINITION_KEY = "drone-order-process";
 
 	static {
 		LogFactory.useSlf4jLogging(); // MyBatis

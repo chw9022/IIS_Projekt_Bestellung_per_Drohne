@@ -12,7 +12,8 @@ import org.apache.ibatis.logging.LogFactory;
 import org.junit.Before;
 import org.junit.Test;
 
-import camel.routes.OrderArchiveRouteBuilder;
+import iis.project.camel.CamelApp;
+import iis.project.camel.routes.OrderArchiveRouteBuilder;
 
 public class CamelAppTest {
 
