@@ -64,7 +64,7 @@
     <bpmn:intermediateCatchEvent id="IntermediateThrowEvent_0l850a6" name="Kunde hat Drohnenlieferungerhalten">
       <bpmn:incoming>SequenceFlow_1ba510c</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_11sw5ps</bpmn:outgoing>
-      <bpmn:messageEventDefinition id="MessageEventDefinition_1o7vfxu" messageRef="Message_0d7e72q" />
+      <bpmn:messageEventDefinition id="MessageEventDefinition_1o7vfxu" messageRef="Message_1wx169q" />
     </bpmn:intermediateCatchEvent>
     <bpmn:parallelGateway id="ParallelGateway_1frcl75">
       <bpmn:incoming>SequenceFlow_071drwf</bpmn:incoming>
@@ -81,7 +81,7 @@
     <bpmn:intermediateCatchEvent id="IntermediateCatchEvent_1dso6cl" name="Kunde hat Rechnung bezahlt">
       <bpmn:incoming>SequenceFlow_0rd6zzg</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_0vfdnpu</bpmn:outgoing>
-      <bpmn:messageEventDefinition id="MessageEventDefinition_1cr47o7" messageRef="Message_0d7e72q" />
+      <bpmn:messageEventDefinition id="MessageEventDefinition_1cr47o7" messageRef="Message_1afch4b" />
     </bpmn:intermediateCatchEvent>
     <bpmn:intermediateThrowEvent id="StartEvent_1rnkzgz" name="Rechnung übermitteln">
       <bpmn:incoming>SequenceFlow_0k0rrjb</bpmn:incoming>
@@ -211,6 +211,8 @@ Eine Drohne pro Bestellung</bpmn:text>
     <bpmn:association id="Association_0nr3a85" sourceRef="StartEvent_1e8e9sq" targetRef="TextAnnotation_0mukbso" />
   </bpmn:process>
   <bpmn:message id="Message_0d7e72q" name="DummyMessage" />
+  <bpmn:message id="Message_1wx169q" name="orderReceivedMessage" />
+  <bpmn:message id="Message_1afch4b" name="invoicePaidMessage" />
   <bpmndi:BPMNDiagram id="BPMNDiagram_1">
     <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Collaboration_1vg6yec">
       <bpmndi:BPMNShape id="Participant_1c21xix_di" bpmnElement="Participant_1c21xix">
