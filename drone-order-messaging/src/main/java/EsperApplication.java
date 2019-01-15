@@ -13,8 +13,8 @@ public class EsperApplication implements Runnable {
 	private EPServiceProvider epsServiceProvider;
 
 	public static void main(String[] args) {
-		EsperApplication esperManager = new EsperApplication();
-		esperManager.run();
+		EsperApplication esperApplication = new EsperApplication();
+		esperApplication.run();
 	}
 
 	public void run() {

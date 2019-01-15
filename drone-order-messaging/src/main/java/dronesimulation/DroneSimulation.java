@@ -41,7 +41,7 @@ public class DroneSimulation implements Runnable {
 
 	public void run() {
 		for (Position position : this.route) {
-			DronePositionNotification dronePositionNotification = new DronePositionNotification(droneId, new Date(),
+			DronePositionNotification dronePositionNotification = new DronePositionNotification(droneId,
 					position);
 			epRuntime.sendEvent(dronePositionNotification);
 			try {

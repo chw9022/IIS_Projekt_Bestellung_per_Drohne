@@ -3,11 +3,16 @@
 // #######################################
 package listener;
 
+import org.codehaus.jackson.map.ObjectMapper;
+
 import com.espertech.esper.client.EventBean;
 import com.espertech.esper.client.UpdateListener;
 
+import adapter.CamundaCorrelationKey;
+import adapter.CamundaMessage;
+import adapter.CamundaVariableType;
 import custom.JMSManager;
-import message.DroneHomeMessage;
+import event.DronePositionNotification;
 
 public class DroneHomeListener implements UpdateListener {
 
@@ -18,10 +23,18 @@ public class DroneHomeListener implements UpdateListener {
 	}
 
 	public void update(EventBean[] newEvents, EventBean[] oldEvents) {
+		DronePositionNotification dronePositionNotificationHome = (DronePositionNotification) newEvents[0]
+				.get("event2");
 		JMSManager jmsManager = new JMSManager();
-		DroneHomeMessage dhm = new DroneHomeMessage(1);
+		CamundaMessage camundaMessage = new CamundaMessage("droneHomeMessage");
+		CamundaCorrelationKey camundaKorrelationKey = new CamundaCorrelationKey("droneId",
+				"" + dronePositionNotificationHome.getDroneId(), CamundaVariableType.INTEGER);
+		camundaMessage.addCorrelationKey(camundaKorrelationKey);
+		ObjectMapper mapper = new ObjectMapper();
+		String jsonString;
 		try {
-			jmsManager.sendMessage(dhm, "messages-to-camunda");
+			jsonString = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(camundaMessage);
+			jmsManager.sendMessage(jsonString, "messages-to-camunda");
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

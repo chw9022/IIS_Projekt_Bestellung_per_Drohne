@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" id="Definitions_1whdbbm" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="2.0.3">
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" id="Definitions_1whdbbm" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="2.2.3">
   <bpmn:collaboration id="Collaboration_1vg6yec">
     <bpmn:participant id="Participant_1c21xix" name="Bestellprozess-per-Drohne" processRef="Process_Order_per_Drone" />
     <bpmn:participant id="Participant_0ovq4t7" name="Kunde" />
@@ -109,7 +109,7 @@
       <bpmn:incoming>SequenceFlow_1p11c90</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_1a0j899</bpmn:outgoing>
     </bpmn:parallelGateway>
-    <bpmn:receiveTask id="Task_0yyti98" name="Drohne zurück in der Logistik eingetroffen">
+    <bpmn:receiveTask id="Task_0yyti98" name="Drohne zurück in der Logistik eingetroffen" messageRef="Message_17i28qx">
       <bpmn:incoming>SequenceFlow_1a0j899</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_1hxg98g</bpmn:outgoing>
     </bpmn:receiveTask>
@@ -273,6 +273,7 @@ Eine Drohne pro Bestellung</bpmn:text>
   </bpmn:process>
   <bpmn:message id="Message_0d7e72q" name="orderReceivedMessage" />
   <bpmn:message id="Message_06lbqoh" name="invoicePaidMessage" />
+  <bpmn:message id="Message_17i28qx" name="droneHomeMessage" />
   <bpmndi:BPMNDiagram id="BPMNDiagram_1">
     <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Collaboration_1vg6yec">
       <bpmndi:BPMNShape id="Participant_1c21xix_di" bpmnElement="Participant_1c21xix">

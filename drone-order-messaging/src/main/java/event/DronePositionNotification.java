@@ -4,7 +4,6 @@
 package event;
 
 import java.io.Serializable;
-import java.util.Date;
 
 import custom.Position;
 
@@ -13,17 +12,14 @@ public class DronePositionNotification implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	private int droneId;
-	private Date timeStamp;
 	private Position position;
 	private Boolean isHome;
 
-	public DronePositionNotification(int droneId, Date timeStamp, Position position) {
+	public DronePositionNotification(int droneId, Position position) {
 		super();
 		this.droneId = droneId;
-		this.timeStamp = timeStamp;
 		this.position = position;
 		this.setIsHome(this.isHome());
-		System.out.println(this.isHome());
 	}
 
 	public int getDroneId() {
@@ -32,14 +28,6 @@ public class DronePositionNotification implements Serializable {
 
 	public void setDroneId(int droneId) {
 		this.droneId = droneId;
-	}
-
-	public Date getTimeStamp() {
-		return timeStamp;
-	}
-
-	public void setTimeStamp(Date timeStamp) {
-		this.timeStamp = timeStamp;
 	}
 
 	public Position getPosition() {
@@ -66,4 +54,8 @@ public class DronePositionNotification implements Serializable {
 		this.isHome = isHome;
 	}
 
+	@Override
+	public String toString() {
+		return "DronePositionNotification [droneId=" + droneId + ", position=" + position + ", isHome=" + isHome + "]";
+	}
 }
