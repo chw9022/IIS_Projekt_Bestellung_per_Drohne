@@ -4,6 +4,7 @@ import java.util.Calendar;
 
 import org.camunda.bpm.engine.delegate.DelegateExecution;
 import org.camunda.bpm.engine.delegate.JavaDelegate;
+import org.codehaus.jackson.map.ObjectMapper;
 
 import iis.project.jms.JMSManager;
 import iis.project.jpa.services.DroneArrivalTimeMessage;
@@ -20,6 +21,8 @@ public class SendDroneTimeOfArrival implements JavaDelegate {
 		DroneArrivalTimeMessage message = new DroneArrivalTimeMessage();
 		message.setOrder(order);
 		message.setTtimeOfArrival(timeOfArrival);
-		m.sendMessage(message, "package-arrival-time");
+		ObjectMapper mapper = new ObjectMapper();
+		String jsonString = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(message);
+		m.sendMessage(jsonString, "package-arrival-time");
 	}
 }
