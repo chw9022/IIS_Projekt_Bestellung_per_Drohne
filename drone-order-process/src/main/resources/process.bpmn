@@ -49,11 +49,11 @@
       <bpmn:outgoing>SequenceFlow_1f2pa1c</bpmn:outgoing>
       <bpmn:messageEventDefinition messageRef="Message_0d7e72q" />
     </bpmn:startEvent>
-    <bpmn:serviceTask id="Task_1huh6rg" name="Warenbestand aktualisieren" camunda:class="processengine.delegate.DummyDelegator">
+    <bpmn:serviceTask id="Task_1huh6rg" name="Warenbestand aktualisieren" camunda:class="iis.project.processengine.delegate.DummyDelegator">
       <bpmn:incoming>SequenceFlow_0s32en2</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_15mdz1m</bpmn:outgoing>
     </bpmn:serviceTask>
-    <bpmn:serviceTask id="Task_0e48ssh" name="Lieferschein erstellen" camunda:class="processengine.delegate.DummyDelegator">
+    <bpmn:serviceTask id="Task_0e48ssh" name="Lieferschein erstellen" camunda:class="iis.project.processengine.delegate.DummyDelegator">
       <bpmn:incoming>SequenceFlow_0i50wqx</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_1jloaoe</bpmn:outgoing>
       <bpmn:property id="Property_1t1i9wt" name="__targetRef_placeholder" />
@@ -87,7 +87,7 @@
       <bpmn:outgoing>SequenceFlow_0s7igva</bpmn:outgoing>
       <bpmn:outgoing>SequenceFlow_0vsp0nk</bpmn:outgoing>
     </bpmn:parallelGateway>
-    <bpmn:serviceTask id="bestellung_archivieren" name="Bestellung archivieren" camunda:class="processengine.delegate.ArchiveOrder">
+    <bpmn:serviceTask id="bestellung_archivieren" name="Bestellung archivieren" camunda:class="iis.project.processengine.delegate.ArchiveOrder">
       <bpmn:incoming>SequenceFlow_11pl1aa</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_0c3grjv</bpmn:outgoing>
     </bpmn:serviceTask>
@@ -97,7 +97,7 @@
     <bpmn:intermediateThrowEvent id="sendDroneTimeOfArrival" name="Übermittlung der voraussichtlichen Ankunftszeit">
       <bpmn:incoming>SequenceFlow_0s7igva</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_0rrwcxt</bpmn:outgoing>
-      <bpmn:messageEventDefinition camunda:class="processengine.delegate.SendDroneTimeOfArrival" />
+      <bpmn:messageEventDefinition camunda:class="iis.project.processengine.delegate.SendDroneTimeOfArrival" />
     </bpmn:intermediateThrowEvent>
     <bpmn:intermediateThrowEvent id="IntermediateThrowEvent_1xoph5l" name="Signal zum Start der Drohne">
       <bpmn:incoming>SequenceFlow_0vsp0nk</bpmn:incoming>
@@ -116,11 +116,11 @@
     <bpmn:subProcess id="SubProcess_1v9vg6l" name="Rechnungsstellung">
       <bpmn:incoming>SequenceFlow_1u7fbij</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_0ut85t7</bpmn:outgoing>
-      <bpmn:businessRuleTask id="Task_09ic365" name="Kundenrabatt ermitteln" camunda:class="processengine.delegate.DummyDelegator">
+      <bpmn:businessRuleTask id="Task_09ic365" name="Kundenrabatt ermitteln" camunda:class="iis.project.processengine.delegate.DummyDelegator">
         <bpmn:incoming>SequenceFlow_0h6er5t</bpmn:incoming>
         <bpmn:outgoing>SequenceFlow_1z139sg</bpmn:outgoing>
       </bpmn:businessRuleTask>
-      <bpmn:serviceTask id="Task_0a2vxb7" name="Rechnung generieren" camunda:class="processengine.delegate.DummyDelegator">
+      <bpmn:serviceTask id="Task_0a2vxb7" name="Rechnung generieren" camunda:class="iis.project.processengine.delegate.DummyDelegator">
         <bpmn:incoming>SequenceFlow_1z139sg</bpmn:incoming>
         <bpmn:outgoing>SequenceFlow_02pln0n</bpmn:outgoing>
       </bpmn:serviceTask>
@@ -166,7 +166,7 @@
       <bpmn:startEvent id="StartEvent_14il0k1">
         <bpmn:outgoing>SequenceFlow_1pnzxmu</bpmn:outgoing>
       </bpmn:startEvent>
-      <bpmn:serviceTask id="ServiceTask_0i5b3qw" name="Drohnenbestand prüfen" camunda:class="processengine.delegate.CallCheckDroneAvailable">
+      <bpmn:serviceTask id="ServiceTask_0i5b3qw" name="Drohnenbestand prüfen" camunda:class="iis.project.processengine.delegate.CallCheckDroneAvailable">
         <bpmn:incoming>SequenceFlow_1wvnxbj</bpmn:incoming>
         <bpmn:incoming>SequenceFlow_1pnzxmu</bpmn:incoming>
         <bpmn:outgoing>SequenceFlow_1o8huch</bpmn:outgoing>

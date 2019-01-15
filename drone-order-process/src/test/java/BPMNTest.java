@@ -14,7 +14,7 @@ import org.junit.Rule;
 import org.junit.Test;
 
 import iis.project.camel.CamelApp;
-import jpa.entities.Order;
+import iis.project.jpa.entities.Order;
 
 /**
  * Test case starting an in-memory database-backed Process Engine.

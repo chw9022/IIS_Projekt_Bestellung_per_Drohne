@@ -11,7 +11,7 @@ import org.apache.camel.converter.jaxb.JaxbDataFormat;
 import org.apache.camel.model.dataformat.JsonLibrary;
 
 import iis.project.processengine.delegate.ArchiveOrder;
-import jpa.entities.Order;
+import iis.project.jpa.entities.Order;
 
 public class OrderArchiveRouteBuilder extends RouteBuilder {
 
