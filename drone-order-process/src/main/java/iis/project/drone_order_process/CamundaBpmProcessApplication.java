@@ -24,7 +24,5 @@ public class CamundaBpmProcessApplication extends ServletProcessApplication {
 	 */
 	@PostDeploy
 	public void onDeploymentFinished(ProcessEngine processEngine) throws JsonProcessingException {
-		CamundaMessageAdapter camundaMessageAdapter = new CamundaMessageAdapter();
-		camundaMessageAdapter.start();
 	}
 }

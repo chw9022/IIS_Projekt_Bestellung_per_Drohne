@@ -1,7 +1,7 @@
 // #######################################
 // Author: Felix Ziegner
 // #######################################
-package iis.project.processengine.adapter;
+package adapter;
 
 import java.util.HashMap;
 import java.util.Map;
