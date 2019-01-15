@@ -12,7 +12,7 @@ import javax.persistence.*;
  *
  */
 @Entity
-@Table(name = "drones")
+@Table(name = "drone")
 public class Drone implements Serializable {
     
 	private static final long serialVersionUID = 1L;
@@ -22,22 +22,22 @@ public class Drone implements Serializable {
 	@Column(name = "id")
 	private int id;
 
-    @Enumerated(EnumType.ORDINAL)
-    @Column(name = "status")
-    private DroneStatus status;
+    @Column(name = "available")
+    private boolean available;
 
 	public Drone() {
 	}
 
 	public int getId() {
-		return this.id;
+		return id;
 	}
 
-    public DroneStatus getStatus() {
-        return status;
+    public boolean isAvailable() {
+        return available;
     }
 
-    public void setStatus(DroneStatus status) {
-        this.status = status;
+    public void setAvailable(boolean available) {
+        this.available = available;
     }
+	
 }

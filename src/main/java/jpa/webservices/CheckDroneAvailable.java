@@ -17,6 +17,6 @@ public class CheckDroneAvailable {
     
     @WebMethod
     public boolean checkDroneAvailable() {
-        return droneService.checkDroneAvailable();
+        return droneService.isAnyDroneAvailable();
     }
 }
