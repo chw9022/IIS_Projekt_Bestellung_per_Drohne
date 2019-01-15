@@ -30,13 +30,13 @@
         <bpmn:flowNodeRef>ExclusiveGateway_018uahy</bpmn:flowNodeRef>
       </bpmn:lane>
       <bpmn:lane id="Lane_1yegv6h" name="Drohnen-Logistik">
-        <bpmn:flowNodeRef>Task_1mhmdd1</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>ExclusiveGateway_15xejp2</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>ParallelGateway_1lysj33</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Task_0yyti98</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Task_1122ynx</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>sendDroneTimeOfArrival</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>IntermediateThrowEvent_1xoph5l</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Task_1mhmdd1</bpmn:flowNodeRef>
       </bpmn:lane>
     </bpmn:laneSet>
     <bpmn:parallelGateway id="ExclusiveGateway_1oqddlv">
@@ -69,19 +69,6 @@
     <bpmn:dataObject id="DataObject_162dxvp" />
     <bpmn:dataObjectReference id="DataObjectReference_1196tyx" name="Bestellung" dataObjectRef="DataObject_1t8vchj" />
     <bpmn:dataObject id="DataObject_1t8vchj" />
-    <bpmn:userTask id="Task_1mhmdd1" name="Drohne per Knopfdruck versenden" camunda:assignee="fozzi">
-      <bpmn:extensionElements>
-        <camunda:formData>
-          <camunda:formField id="orderid" label="OrderNumber" type="long" defaultValue="${order.id}">
-            <camunda:validation>
-              <camunda:constraint name="readonly" />
-            </camunda:validation>
-          </camunda:formField>
-        </camunda:formData>
-      </bpmn:extensionElements>
-      <bpmn:incoming>SequenceFlow_0mqkp4o</bpmn:incoming>
-      <bpmn:outgoing>SequenceFlow_047hjd4</bpmn:outgoing>
-    </bpmn:userTask>
     <bpmn:parallelGateway id="ExclusiveGateway_15xejp2">
       <bpmn:incoming>SequenceFlow_047hjd4</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_0s7igva</bpmn:outgoing>
@@ -259,6 +246,10 @@
     <bpmn:sequenceFlow id="SequenceFlow_1w59it5" sourceRef="IntermediateThrowEvent_0l850a6" targetRef="ExclusiveGateway_018uahy" />
     <bpmn:sequenceFlow id="SequenceFlow_11pl1aa" sourceRef="ExclusiveGateway_018uahy" targetRef="bestellung_archivieren" />
     <bpmn:sequenceFlow id="SequenceFlow_1hxg98g" sourceRef="Task_0yyti98" targetRef="ExclusiveGateway_018uahy" />
+    <bpmn:userTask id="Task_1mhmdd1" name="Drohne per Knopfdruck versenden" camunda:assignee="fozzi">
+      <bpmn:incoming>SequenceFlow_0mqkp4o</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_047hjd4</bpmn:outgoing>
+    </bpmn:userTask>
     <bpmn:textAnnotation id="TextAnnotation_0gdm077">
       <bpmn:text>Startevent pro Bestellung</bpmn:text>
     </bpmn:textAnnotation>
@@ -477,11 +468,11 @@ Eine Drohne pro Bestellung</bpmn:text>
         <di:waypoint x="1229" y="309" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNShape id="UserTask_04zwcko_di" bpmnElement="Task_1mhmdd1">
-        <dc:Bounds x="1397" y="938" width="100" height="80" />
+        <dc:Bounds x="1391" y="938" width="100" height="80" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="SequenceFlow_0mqkp4o_di" bpmnElement="SequenceFlow_0mqkp4o">
         <di:waypoint x="1338" y="978" />
-        <di:waypoint x="1397" y="978" />
+        <di:waypoint x="1391" y="978" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="MessageFlow_0o6n9j8_di" bpmnElement="MessageFlow_0o6n9j8">
         <di:waypoint x="1641" y="881" />
@@ -604,7 +595,7 @@ Eine Drohne pro Bestellung</bpmn:text>
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="SequenceFlow_047hjd4_di" bpmnElement="SequenceFlow_047hjd4">
-        <di:waypoint x="1497" y="978" />
+        <di:waypoint x="1491" y="978" />
         <di:waypoint x="1547" y="978" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNShape id="ParallelGateway_0bti0bw_di" bpmnElement="ExclusiveGateway_15xejp2">
