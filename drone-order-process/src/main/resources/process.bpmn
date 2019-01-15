@@ -102,7 +102,7 @@
     <bpmn:intermediateThrowEvent id="IntermediateThrowEvent_1xoph5l" name="Signal zum Start der Drohne">
       <bpmn:incoming>SequenceFlow_0vsp0nk</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_1p11c90</bpmn:outgoing>
-      <bpmn:messageEventDefinition />
+      <bpmn:messageEventDefinition camunda:class="iis.project.processengine.delegate.DroneStarted" />
     </bpmn:intermediateThrowEvent>
     <bpmn:parallelGateway id="ParallelGateway_1lysj33">
       <bpmn:incoming>SequenceFlow_0rrwcxt</bpmn:incoming>
