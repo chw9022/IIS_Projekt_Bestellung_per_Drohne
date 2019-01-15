@@ -22,10 +22,10 @@ public class JMSManager {
 				ActiveMQConnection.DEFAULT_BROKER_URL);
 		connectionFactory.setTrustAllPackages(true);
 		Connection connection = connectionFactory.createConnection();
+		connection.start();
 		Session session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
 		Queue queue = session.createQueue(queueName);
 		MessageProducer producer = session.createProducer(queue);
-		connection.start();
 		ObjectMessage m1 = session.createObjectMessage();
 		m1.setObject(message);
 		producer.send(m1);
