@@ -6,7 +6,7 @@
     <bpmn:participant id="Participant_04q7o1v" name="Drohnen-Informationssystem" />
     <bpmn:participant id="Participant_1lrh1fm" name="Bank" />
     <bpmn:messageFlow id="MessageFlow_1jnnbk9" name="Bestellung" sourceRef="Participant_0ovq4t7" targetRef="StartEvent_1e8e9sq" />
-    <bpmn:messageFlow id="MessageFlow_0tz6yta" name="Lieferungs-bestätigung" sourceRef="Participant_0ovq4t7" targetRef="IntermediateThrowEvent_0l850a6" />
+    <bpmn:messageFlow id="MessageFlow_0tz6yta" name="Lieferungs-bestätigung" sourceRef="Participant_0ovq4t7" targetRef="IntermediateCatchEvent_0l850a6" />
     <bpmn:messageFlow id="MessageFlow_0o6n9j8" name="Voraussichtliche Ankunftszeit" sourceRef="sendDroneTimeOfArrival" targetRef="Participant_0ovq4t7" />
     <bpmn:messageFlow id="MessageFlow_1ej3gzj" name="Rechnung" sourceRef="StartEvent_1rnkzgz" targetRef="Participant_0ovq4t7" />
     <bpmn:messageFlow id="MessageFlow_1narn8i" name="Zahlungs-bestätigung" sourceRef="Participant_1lrh1fm" targetRef="IntermediateCatchEvent_1dso6cl" />
@@ -23,7 +23,7 @@
         <bpmn:flowNodeRef>ExclusiveGateway_0lzx8tj</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>ParallelGateway_0rvrjyh</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>SubProcess_1v9vg6l</bpmn:flowNodeRef>
-        <bpmn:flowNodeRef>IntermediateThrowEvent_0l850a6</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>IntermediateCatchEvent_0l850a6</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>IntermediateCatchEvent_1dso6cl</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>StartEvent_1e8e9sq</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>EndEvent_0lf30in</bpmn:flowNodeRef>
@@ -133,7 +133,7 @@
       </bpmn:endEvent>
       <bpmn:sequenceFlow id="SequenceFlow_1beape4" sourceRef="StartEvent_1rnkzgz" targetRef="EndEvent_06yxk3j" />
     </bpmn:subProcess>
-    <bpmn:intermediateCatchEvent id="IntermediateThrowEvent_0l850a6" name="Kunde hat Drohnenlieferungerhalten">
+    <bpmn:intermediateCatchEvent id="IntermediateCatchEvent_0l850a6" name="Kunde hat Drohnenlieferungerhalten">
       <bpmn:incoming>SequenceFlow_1ba510c</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_1w59it5</bpmn:outgoing>
       <bpmn:messageEventDefinition id="MessageEventDefinition_1o7vfxu" messageRef="Message_0d7e72q" />
@@ -227,7 +227,7 @@
     <bpmn:sequenceFlow id="SequenceFlow_0c3grjv" sourceRef="bestellung_archivieren" targetRef="EndEvent_0lf30in" />
     <bpmn:sequenceFlow id="SequenceFlow_0rd6zzg" sourceRef="ParallelGateway_0rvrjyh" targetRef="IntermediateCatchEvent_1dso6cl" />
     <bpmn:sequenceFlow id="SequenceFlow_1rkjonx" sourceRef="ExclusiveGateway_0lzx8tj" targetRef="ParallelGateway_0rvrjyh" />
-    <bpmn:sequenceFlow id="SequenceFlow_1ba510c" sourceRef="ParallelGateway_0rvrjyh" targetRef="IntermediateThrowEvent_0l850a6" />
+    <bpmn:sequenceFlow id="SequenceFlow_1ba510c" sourceRef="ParallelGateway_0rvrjyh" targetRef="IntermediateCatchEvent_0l850a6" />
     <bpmn:sequenceFlow id="SequenceFlow_0ut85t7" sourceRef="SubProcess_1v9vg6l" targetRef="ExclusiveGateway_0lzx8tj" />
     <bpmn:sequenceFlow id="SequenceFlow_1u7fbij" sourceRef="ExclusiveGateway_1oqddlv" targetRef="SubProcess_1v9vg6l" />
     <bpmn:sequenceFlow id="SequenceFlow_0i50wqx" sourceRef="ExclusiveGateway_1oqddlv" targetRef="Task_0e48ssh" />
@@ -249,7 +249,7 @@
       <bpmn:outgoing>SequenceFlow_11pl1aa</bpmn:outgoing>
     </bpmn:parallelGateway>
     <bpmn:sequenceFlow id="SequenceFlow_1cv17t9" sourceRef="IntermediateCatchEvent_1dso6cl" targetRef="ExclusiveGateway_018uahy" />
-    <bpmn:sequenceFlow id="SequenceFlow_1w59it5" sourceRef="IntermediateThrowEvent_0l850a6" targetRef="ExclusiveGateway_018uahy" />
+    <bpmn:sequenceFlow id="SequenceFlow_1w59it5" sourceRef="IntermediateCatchEvent_0l850a6" targetRef="ExclusiveGateway_018uahy" />
     <bpmn:sequenceFlow id="SequenceFlow_11pl1aa" sourceRef="ExclusiveGateway_018uahy" targetRef="bestellung_archivieren" />
     <bpmn:sequenceFlow id="SequenceFlow_1hxg98g" sourceRef="Task_0yyti98" targetRef="ExclusiveGateway_018uahy" />
     <bpmn:userTask id="Task_1mhmdd1" name="Drohne per Knopfdruck versenden" camunda:assignee="demo">
@@ -451,7 +451,7 @@ Eine Drohne pro Bestellung</bpmn:text>
         <di:waypoint x="1064" y="945" />
         <di:waypoint x="1120" y="945" />
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNShape id="IntermediateCatchEvent_1ewok37_di" bpmnElement="IntermediateThrowEvent_0l850a6">
+      <bpmndi:BPMNShape id="IntermediateCatchEvent_1ewok37_di" bpmnElement="IntermediateCatchEvent_0l850a6">
         <dc:Bounds x="1229" y="291" width="36" height="36" />
         <bpmndi:BPMNLabel>
           <dc:Bounds x="1206" y="334" width="85" height="40" />
