@@ -24,9 +24,9 @@ DROP TABLE IF EXISTS `groceryshop`.`articles`;
 CREATE TABLE IF NOT EXISTS articles(
 id int PRIMARY KEY AUTO_INCREMENT,
 name varchar(50) NOT NULL,
-weight decimal(10,2) NOT NULL,
+weightInKg decimal(10,3) NOT NULL,
 price decimal(10,2) NOT NULL,
-amount int NOT NULL
+stockAmount int NOT NULL
 );
 
 DROP TABLE IF EXISTS `groceryshop`.`orders`;
@@ -79,9 +79,9 @@ available boolean DEFAULT true
 INSERT INTO clienttype(name) VALUES("Normal");
 INSERT INTO clienttype(name) VALUES("Premium");
 INSERT INTO clienttype(name) VALUES("Super");
-INSERT INTO articles (name, weight, price, amount) VALUES("Tomaten",500,10.50, 300);
-INSERT INTO articles (name, weight, price, amount) VALUES("Bananen",100,7.50, 30);
-INSERT INTO articles (name, weight, price, amount) VALUES("Fraenkische Bratwuerste",200,5.50, 130);
+INSERT INTO articles (name, weightInKg, price, stockAmount) VALUES("Tomaten",0.500, 10.50, 300);
+INSERT INTO articles (name, weightInKg, price, stockAmount) VALUES("Bananen",0.800, 7.50, 30);
+INSERT INTO articles (name, weightInKg, price, stockAmount) VALUES("Fraenkische Bratwuerste", 1, 5.50, 130);
 INSERT INTO clients (firstname, lastname, street, place, clienttype) VALUES("Hans","Schmidt", "Erlangerstr. 1a","Erlangen",1);
 INSERT INTO clients (firstname, lastname, street, place, clienttype) VALUES("Peter","Maier", "Nürnbergerstr. 1b","Fürth",2);
 INSERT INTO clients (firstname, lastname, street, place, clienttype) VALUES("Andreas","Meister", "Fürtherstr. 1c","Nürnberg",3);
