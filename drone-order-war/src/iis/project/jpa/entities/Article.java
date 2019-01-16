@@ -24,23 +24,19 @@ public class Article implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
-
 	private int id;
 
 	@Column(name = "name")
-
 	private String name;
 
-	@Column(name = "weight")
-
-	private double weight;
+	@Column(name = "weightInKg")
+	private double weightInKg;
 
 	@Column(name = "price")
-
 	private double price;
 
-	@Column(name = "amount")
-	private int amount;
+	@Column(name = "stockAmount")
+	private int stockAmount;
 
 	@XmlElement
 	public int getId() {
@@ -57,12 +53,12 @@ public class Article implements Serializable {
 	}
 
 	@XmlElement
-	public double getWeight() {
-		return weight;
+	public double getweightInKg() {
+		return weightInKg;
 	}
 
-	public void setWeight(double weight) {
-		this.weight = weight;
+	public void setweightInKg(double weightInKg) {
+		this.weightInKg = weightInKg;
 	}
 
 	@XmlElement
@@ -75,11 +71,11 @@ public class Article implements Serializable {
 	}
 
 	@XmlElement
-	public int getAmount() {
-		return amount;
+	public int getStockAmount() {
+		return stockAmount;
 	}
 
-	public void setAmount(int amount) {
-		this.amount = amount;
+	public void setStockAmount(int stockAmount) {
+		this.stockAmount = stockAmount;
 	}
 }

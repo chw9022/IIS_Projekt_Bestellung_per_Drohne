@@ -1,42 +1,33 @@
 // #######################################
-// Author: Felix Ziegner
+// Author: Christian Wittmann
 // #######################################
 package iis.project.jpa.services;
 
-import java.util.List;
-
+import javax.ejb.LocalBean;
+import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
-import javax.persistence.Query;
+import javax.persistence.PersistenceContext;
 
 import iis.project.jpa.entities.Article;
 
-public class Articles {
-	EntityManagerFactory emFactory = Persistence.createEntityManagerFactory("Bestellung_per_Drohne");
-	EntityManager entityManager = emFactory.createEntityManager();
-
-	public void addArticle(Article article) {
-		entityManager.persist(article);
+/**
+ * Session Bean implementation class ArticleService
+ */
+@Stateless
+@LocalBean
+public class ArticleService implements ArticleServiceLocal {
+    
+    @PersistenceContext
+    EntityManager em;
+    
+    @Override
+	public int getStockAmount(int id) {
+		return em.find(Article.class, id).getStockAmount();
+	}
+	
+    @Override
+	public void setStockAmount(int id, int newStockAmount) {
+	    em.find(Article.class, id).setStockAmount(newStockAmount);
 	}
 
-	public void deleteArticle(Article article) {
-		entityManager.remove(article);
-	}
-
-	public Article findById(int articleId) {
-		return entityManager.find(Article.class, articleId);
-	}
-
-	public List<Article> findByName(String articleName) {
-		final Query query = entityManager
-				.createQuery("SELECT a from Article as a WHERE (0 < LOCATE(:articleName, a.name))");
-		query.setParameter("articleName", articleName);
-		return query.getResultList();
-	}
-
-	public List<Article> getArticles() {
-		Query query = entityManager.createQuery("SELECT a from Article as a");
-		return query.getResultList();
-	}
 }

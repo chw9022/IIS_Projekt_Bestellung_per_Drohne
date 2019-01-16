@@ -8,7 +8,7 @@ import javax.persistence.*;
 
 
 /**
- * Entity implementation class for Entity: Drones
+ * Entity implementation class for Entity: Drone
  *
  */
 @Entity
