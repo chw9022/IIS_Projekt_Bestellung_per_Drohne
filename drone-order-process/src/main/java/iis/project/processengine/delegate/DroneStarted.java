@@ -26,6 +26,6 @@ public class DroneStarted implements JavaDelegate {
 		Marshaller marshaller = jaxbContext.createMarshaller();
 		StringWriter stringWriter = new StringWriter();
 		marshaller.marshal(message, stringWriter);
-		m.sendMessage(stringWriter.toString(), "drone-started");
+		m.sendTextMessage(stringWriter.toString(), "drone-started");
 	}
 }

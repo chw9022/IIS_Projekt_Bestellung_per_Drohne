@@ -27,7 +27,7 @@ public class ArchiveOrder implements JavaDelegate {
 		JAXBContext JaxbContext = JAXBContext.newInstance(Order.class);
 		Marshaller marshaller = JaxbContext.createMarshaller();
 		marshaller.marshal(orderToArchive, stringWriter);
-		jmsManager.sendMessage(stringWriter.toString(), "order-archive");
+		jmsManager.sendTextMessage(stringWriter.toString(), "order-archive");
 		execution.setVariable(ORDER_VARIABLE, orderToArchive);
 	}
 }

@@ -29,13 +29,14 @@ public class DroneHomeListener implements UpdateListener {
 		JMSManager jmsManager = new JMSManager();
 		CamundaMessage camundaMessage = new CamundaMessage("droneHomeMessage");
 		CamundaCorrelationKey camundaKorrelationKey = new CamundaCorrelationKey("droneId",
-				"" + dronePositionNotificationHome.getDroneId(), CamundaVariableType.INTEGER);
+				"" + dronePositionNotificationHome.getDroneId(), CamundaVariableType.LONG);
 		camundaMessage.addCorrelationKey(camundaKorrelationKey);
 		ObjectMapper mapper = new ObjectMapper();
 		String jsonString;
 		try {
 			jsonString = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(camundaMessage);
-			jmsManager.sendMessage(jsonString, "messages-to-camunda");
+			System.out.println("send to queue messages-to-camunda: " + jsonString);
+			jmsManager.sendTextMessage(jsonString, "messages-to-camunda");
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
