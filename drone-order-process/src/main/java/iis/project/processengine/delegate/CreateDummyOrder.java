@@ -35,6 +35,7 @@ public class CreateDummyOrder implements ExecutionListener {
 		op2.setOrder(o);
 		o.addOrderPosition(op2);
 		execution.setVariable("order", o);
+		execution.setVariable("orderId", o.getId());
 		
 	}
 
