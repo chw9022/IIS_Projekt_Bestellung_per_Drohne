@@ -57,6 +57,10 @@ out
 *.iml
 atlassian-ide-plugin.xml
 
+# VSCode specific files/directories #
+#######################################
+.vscode
+
 # Eclipse specific files/directories #
 ######################################
 #.classpath
