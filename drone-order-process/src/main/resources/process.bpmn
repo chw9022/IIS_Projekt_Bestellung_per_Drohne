@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" id="Definitions_1whdbbm" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="2.0.3">
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" id="Definitions_1whdbbm" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="2.2.3">
   <bpmn:collaboration id="Collaboration_1vg6yec">
     <bpmn:participant id="Participant_1c21xix" name="Bestellprozess-per-Drohne" processRef="Process_Order_per_Drone" />
     <bpmn:participant id="Participant_0ovq4t7" name="Kunde" />
@@ -246,7 +246,7 @@
     <bpmn:sequenceFlow id="SequenceFlow_1w59it5" sourceRef="IntermediateThrowEvent_0l850a6" targetRef="ExclusiveGateway_018uahy" />
     <bpmn:sequenceFlow id="SequenceFlow_11pl1aa" sourceRef="ExclusiveGateway_018uahy" targetRef="bestellung_archivieren" />
     <bpmn:sequenceFlow id="SequenceFlow_1hxg98g" sourceRef="Task_0yyti98" targetRef="ExclusiveGateway_018uahy" />
-    <bpmn:userTask id="Task_1mhmdd1" name="Drohne per Knopfdruck versenden" camunda:assignee="fozzi">
+    <bpmn:userTask id="Task_1mhmdd1" name="Drohne per Knopfdruck versenden" camunda:assignee="demo">
       <bpmn:incoming>SequenceFlow_0mqkp4o</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_047hjd4</bpmn:outgoing>
     </bpmn:userTask>
