@@ -16,13 +16,13 @@ public class UpdateStockAmount {
     ArticleService articleService;
     
     @WebMethod
-    public void updateStockAmount(int articleId, int newStockAmount) {
+    public synchronized void updateStockAmount(int articleId, int newStockAmount) {
         
         if (articleService.getStockAmount(articleId) > newStockAmount) {
             articleService.setStockAmount(articleId, newStockAmount);
         }
         else {
-            System.err.println("ERROR: newStockAmount > stockAmount");
+            System.err.println("ERROR: newStockAmount >= stockAmount");
         }
     }
 }

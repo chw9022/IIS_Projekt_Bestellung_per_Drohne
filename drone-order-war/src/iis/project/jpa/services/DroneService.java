@@ -38,7 +38,6 @@ public class DroneService implements DroneServiceLocal {
         else {
             int idOfAvailableDrone = droneIds.get(0);
             setDroneAvailable(idOfAvailableDrone, false);
-            System.out.println("Verfügbare Drohne: " + idOfAvailableDrone);
             return idOfAvailableDrone;
         }
     }
