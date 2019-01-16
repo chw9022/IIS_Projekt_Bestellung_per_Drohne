@@ -12,6 +12,7 @@ firstname varchar(50) NOT NULL,
 lastname varchar(50) NOT NULL,
 street varchar(60) NOT NULL,
 place varchar(80) NOT NULL,
+email varchar(80) NOT NULL,
 clienttype int DEFAULT 1,
 FOREIGN KEY (clienttype) REFERENCES clienttype(id)
 );
