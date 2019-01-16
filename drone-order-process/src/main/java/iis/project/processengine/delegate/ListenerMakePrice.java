@@ -15,36 +15,36 @@ import iis.project.jpa.entities.OrderPosition;
 
 public class ListenerMakePrice implements JavaDelegate {
 
-    private static String ORDER_VARIABLE = "order";
+	private static String ORDER_VARIABLE = "order";
 
-    @Override
-    public void execute(DelegateExecution execution) throws Exception {
-        // TODO Auto-generated method stub
+	@Override
+	public void execute(DelegateExecution execution) throws Exception {
+		// TODO Auto-generated method stub
 
-        Map<String, Object> variables = execution.getVariables();
-        Order order = (Order) variables.get(ORDER_VARIABLE);
+		Map<String, Object> variables = execution.getVariables();
+		Order order = (Order) variables.get(ORDER_VARIABLE);
 
-        double totalPrice = getTotalPrice(order);
-        ClientType clientType = order.getClient().getClienttype();
-        String client = String.valueOf(clientType);
+		double totalPrice = getTotalPrice(order);
+		ClientType clientType = order.getClient().getClienttype();
+		String client = String.valueOf(clientType);
 
-        VariableMap rabattInputs = Variables.createVariables();
-        rabattInputs.putValue("rabatt_clienttype", client);
-        rabattInputs.putValue("rabatt_price", totalPrice);
-        execution.setVariables(rabattInputs);
+		VariableMap rabattInputs = Variables.createVariables();
+		rabattInputs.putValue("rabatt_clienttype", client);
+		rabattInputs.putValue("rabatt_price", totalPrice);
+		execution.setVariables(rabattInputs);
 
-    }
+	}
 
-    private double getTotalPrice(Order order) {
-        List<OrderPosition> positions = order.getOrderPositions();
+	private double getTotalPrice(Order order) {
+		List<OrderPosition> positions = order.getOrderPositions();
 
-        double totalPrice = 0.0;
+		double totalPrice = 0.0;
 
-        for (OrderPosition orderPosition : positions) {
-            totalPrice += orderPosition.getArticle().getPrice() * orderPosition.getAmount();
-        }
+		for (OrderPosition orderPosition : positions) {
+			totalPrice += orderPosition.getArticle().getPrice() * orderPosition.getAmount();
+		}
 
-        return totalPrice;
-    }
+		return totalPrice;
+	}
 
 }

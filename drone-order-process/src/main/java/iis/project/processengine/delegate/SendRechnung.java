@@ -10,18 +10,16 @@ import iis.project.jms.JMSManager;
 
 public class SendRechnung implements JavaDelegate {
 
-    public static String QUEUE_KUNDE = "kunde";
+	public static String QUEUE_KUNDE = "kunde";
 
-    @Override
-    public void execute(DelegateExecution execution) throws Exception {
-        System.out.println("Ich bin der Sender!");
+	@Override
+	public void execute(DelegateExecution execution) throws Exception {
+		System.out.println("Ich bin der Sender!");
 
-        Map<String, Object> SendOrder = execution.getVariables();
-        String msg = (String) SendOrder.get("msg");
+		Map<String, Object> SendOrder = execution.getVariables();
+		String msg = (String) SendOrder.get("msg");
 
-        JMSManager jmsKunde = new JMSManager();
-        jmsKunde.sendTextMessage(msg, QUEUE_KUNDE);
-
-    }
-
+		JMSManager jmsKunde = new JMSManager();
+		jmsKunde.sendTextMessage(msg, QUEUE_KUNDE);
+	}
 }
