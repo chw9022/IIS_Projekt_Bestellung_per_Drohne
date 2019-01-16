@@ -10,7 +10,7 @@ import org.camunda.bpm.engine.delegate.DelegateExecution;
 import org.camunda.bpm.engine.delegate.JavaDelegate;
 
 import iis.project.jms.JMSManager;
-import message.DroneStartedMessage;
+import iis.project.processengine.message.DroneStartedMessage;
 
 public class DroneStarted implements JavaDelegate {
 

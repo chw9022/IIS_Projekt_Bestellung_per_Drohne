@@ -1,30 +1,28 @@
-package iis.project.jpa.services;
+package iis.project.processengine.message;
 
 import java.io.Serializable;
 import java.util.Calendar;
-
-import iis.project.jpa.entities.Order;
 
 public class DroneArrivalTimeMessage implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-	Order order;
-	Calendar timeOfArrival;
+	Integer order;
+	String timeOfArrival;
 
-	public Order getOrder() {
+	public Integer getOrder() {
 		return order;
 	}
 
-	public void setOrder(Order order) {
+	public void setOrder(Integer order) {
 		this.order = order;
 	}
 
-	public Calendar getTtimeOfArrival() {
+	public String getTtimeOfArrival() {
 		return timeOfArrival;
 	}
 
 	public void setTtimeOfArrival(Calendar timeOfArrival) {
-		this.timeOfArrival = timeOfArrival;
+		this.timeOfArrival = timeOfArrival.toString();
 	}
 }

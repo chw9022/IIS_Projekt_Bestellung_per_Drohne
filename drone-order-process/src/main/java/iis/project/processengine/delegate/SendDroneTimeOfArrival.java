@@ -7,19 +7,18 @@ import org.camunda.bpm.engine.delegate.JavaDelegate;
 import org.codehaus.jackson.map.ObjectMapper;
 
 import iis.project.jms.JMSManager;
-import iis.project.jpa.services.DroneArrivalTimeMessage;
-import iis.project.jpa.entities.Order;
+import iis.project.processengine.message.DroneArrivalTimeMessage;
 
 public class SendDroneTimeOfArrival implements JavaDelegate {
 
 	@Override
 	public void execute(DelegateExecution execution) throws Exception {
 		JMSManager m = new JMSManager();
-		Order order = (Order) execution.getVariable("order");
+		// Todo: get order id
 		Calendar timeOfArrival = Calendar.getInstance();
 		timeOfArrival.add(Calendar.MINUTE, 5);
 		DroneArrivalTimeMessage message = new DroneArrivalTimeMessage();
-		message.setOrder(order);
+		message.setOrder(1);
 		message.setTtimeOfArrival(timeOfArrival);
 		ObjectMapper mapper = new ObjectMapper();
 		String jsonString = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(message);

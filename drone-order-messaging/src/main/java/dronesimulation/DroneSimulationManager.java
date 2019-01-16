@@ -21,7 +21,9 @@ import org.apache.activemq.ActiveMQConnectionFactory;
 
 import com.espertech.esper.client.EPServiceProvider;
 
-import message.DroneStartedMessage;
+import iis.project.processengine.message.DroneStartedMessage;
+
+
 
 public class DroneSimulationManager implements Runnable {
 	private EPServiceProvider epsServiceProvider;

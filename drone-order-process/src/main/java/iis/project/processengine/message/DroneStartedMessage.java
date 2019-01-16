@@ -1,7 +1,7 @@
 // #######################################
 // Author: Felix Ziegner
 // #######################################
-package message;
+package iis.project.processengine.message;
 
 import java.io.Serializable;
 
