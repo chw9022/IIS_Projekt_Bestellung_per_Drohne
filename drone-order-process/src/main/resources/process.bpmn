@@ -46,6 +46,9 @@
       <bpmn:outgoing>SequenceFlow_0s32en2</bpmn:outgoing>
     </bpmn:parallelGateway>
     <bpmn:startEvent id="StartEvent_1e8e9sq" name="Bestelleingang">
+      <bpmn:extensionElements>
+        <camunda:executionListener class="iis.project.processengine.delegate.CreateDummyOrder" event="end" />
+      </bpmn:extensionElements>
       <bpmn:outgoing>SequenceFlow_1f2pa1c</bpmn:outgoing>
       <bpmn:messageEventDefinition messageRef="Message_0d7e72q" />
     </bpmn:startEvent>
