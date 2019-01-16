@@ -20,7 +20,7 @@ public class SendRechnung implements JavaDelegate {
         String msg = (String) SendOrder.get("msg");
 
         JMSManager jmsKunde = new JMSManager();
-        jmsKunde.sendMessage(msg, QUEUE_KUNDE);
+        jmsKunde.sendTextMessage(msg, QUEUE_KUNDE);
 
     }
 
