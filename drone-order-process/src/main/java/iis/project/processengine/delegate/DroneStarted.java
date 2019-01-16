@@ -17,7 +17,7 @@ public class DroneStarted implements JavaDelegate {
 	@Override
 	public void execute(DelegateExecution execution) throws Exception {
 		JMSManager m = new JMSManager();
-		Integer droneId = (Integer) execution.getVariable("droneId");
+		Integer droneId = ((Long) execution.getVariable("droneId")).intValue();
 		Calendar timeOfArrival = Calendar.getInstance();
 		timeOfArrival.add(Calendar.MINUTE, 5);
 		DroneStartedMessage message = new DroneStartedMessage();

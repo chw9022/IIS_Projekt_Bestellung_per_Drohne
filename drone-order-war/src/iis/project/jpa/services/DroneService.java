@@ -20,27 +20,11 @@ import iis.project.jpa.entities.Drone;
 public class DroneService implements DroneServiceLocal {
     
     private static final int NOT_AVAILABLE = 0;
+
     
     @PersistenceContext
     EntityManager em;
     
-    @Override
-    public boolean isDroneAvailable(int id) {
-        return em.find(Drone.class, id).isAvailable();
-    }
-
-    @Override
-    public boolean isAnyDroneAvailable() {
-        int idOfAvailableDrone = getIdOfAvailableDrone();
-        
-        if (idOfAvailableDrone == NOT_AVAILABLE) {
-            return false;
-        }
-        else {
-            setDroneAvailable(idOfAvailableDrone, false);
-            return true;
-        }
-    }
 
     @Override
     public int getIdOfAvailableDrone() {
@@ -48,8 +32,15 @@ public class DroneService implements DroneServiceLocal {
         List<Integer> droneIds = em.createQuery("SELECT id FROM Drone d " +
                                                 "WHERE d.available = TRUE")
                                                 .getResultList();
-        
-        return droneIds.isEmpty() ? NOT_AVAILABLE : droneIds.get(0);
+        if (droneIds.isEmpty()) {
+            return NOT_AVAILABLE;
+        }
+        else {
+            int idOfAvailableDrone = droneIds.get(0);
+            setDroneAvailable(idOfAvailableDrone, false);
+            System.out.println("Verfügbare Drohne: " + idOfAvailableDrone);
+            return idOfAvailableDrone;
+        }
     }
 
     @Override

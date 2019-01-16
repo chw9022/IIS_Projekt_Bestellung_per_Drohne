@@ -8,5 +8,5 @@
 package iis.project.jpa.webservices;
 
 public interface CheckDroneAvailable extends java.rmi.Remote {
-    public boolean checkDroneAvailable() throws java.rmi.RemoteException;
+    public int getIdOfAvailableDrone() throws java.rmi.RemoteException;
 }

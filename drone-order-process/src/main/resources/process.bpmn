@@ -247,6 +247,15 @@
     <bpmn:sequenceFlow id="SequenceFlow_11pl1aa" sourceRef="ExclusiveGateway_018uahy" targetRef="bestellung_archivieren" />
     <bpmn:sequenceFlow id="SequenceFlow_1hxg98g" sourceRef="Task_0yyti98" targetRef="ExclusiveGateway_018uahy" />
     <bpmn:userTask id="Task_1mhmdd1" name="Drohne per Knopfdruck versenden" camunda:assignee="demo">
+      <bpmn:extensionElements>
+        <camunda:formData>
+          <camunda:formField id="droneId" label="Folgende Drohne versenden:" type="long" defaultValue="${droneId}">
+            <camunda:validation>
+              <camunda:constraint name="readonly" />
+            </camunda:validation>
+          </camunda:formField>
+        </camunda:formData>
+      </bpmn:extensionElements>
       <bpmn:incoming>SequenceFlow_0mqkp4o</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_047hjd4</bpmn:outgoing>
     </bpmn:userTask>
