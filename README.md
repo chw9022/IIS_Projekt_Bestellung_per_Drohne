@@ -47,3 +47,33 @@ public class GroceryShopPersistence {
 	}
 }
 ```
+
+## Nachrichten an Camunda senden
+
+Diese nachrichten jeweils separat manuell in die queue **messages-to-camunda** schicken um die events auszulösen.
+
+Funktioniert nur mit der dummy Order ansonsten muss die OrderId angepasst werden. (dummyorder hat immer id 0)
+
+```
+{
+  "messageName" : "orderReceivedMessage",
+  "correlationKeys" : {
+    "orderId" : {
+      "type" : "Integer",
+      "value" : "0"
+    }
+  }
+}
+```
+
+```
+{
+  "messageName" : "invoicePaidMessage",
+  "correlationKeys" : {
+    "orderId" : {
+      "type" : "Integer",
+      "value" : "0"
+    }
+  }
+}
+```

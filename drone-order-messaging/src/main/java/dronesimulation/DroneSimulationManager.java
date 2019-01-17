@@ -23,8 +23,6 @@ import com.espertech.esper.client.EPServiceProvider;
 
 import iis.project.processengine.message.DroneStartedMessage;
 
-
-
 public class DroneSimulationManager implements Runnable {
 	private EPServiceProvider epsServiceProvider;
 
@@ -34,17 +32,17 @@ public class DroneSimulationManager implements Runnable {
 	}
 
 	public void run() {
-
 		ActiveMQConnectionFactory connectionFactory = new ActiveMQConnectionFactory(
 				ActiveMQConnection.DEFAULT_BROKER_URL);
 		// connectionFactory.setTrustAllPackages(true);
 		Connection connection;
 		try {
 			connection = connectionFactory.createConnection();
-			connection.start();
 			Session session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
 			Queue queue = session.createQueue("drone-started");
 			MessageConsumer consumer = session.createConsumer(queue);
+			connection.start();
+			System.out.println("listen messages");
 			while (true) {
 				Message message = consumer.receive();
 				if (message instanceof TextMessage) {
@@ -52,8 +50,13 @@ public class DroneSimulationManager implements Runnable {
 					JAXBContext jaxbContext = JAXBContext.newInstance(DroneStartedMessage.class);
 					Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();
 					StringReader reader = new StringReader(messageBody);
+					System.out.println("message received: " + messageBody);
 					DroneStartedMessage droneStartedMessage = (DroneStartedMessage) unmarshaller.unmarshal(reader);
+					System.out.println("start simulation drone id: " + droneStartedMessage.getDroneId());
 					this.startSimulation(droneStartedMessage.getDroneId());
+				}
+				else {
+					System.out.println("message type: "+ message.getClass());
 				}
 				try {
 					Thread.sleep(500);

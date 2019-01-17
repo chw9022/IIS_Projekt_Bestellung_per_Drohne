@@ -17,6 +17,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 @Entity
 @Table(name = "orders_position")
@@ -55,7 +56,7 @@ public class OrderPosition implements Serializable {
 		this.amount = amount;
 	}
 
-	@XmlElement
+	@XmlTransient
 	public Order getOrder() {
 		return order;
 	}

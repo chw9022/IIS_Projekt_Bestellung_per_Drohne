@@ -1,5 +1,5 @@
 /**
- * CheckDroneAvailableServiceSoapBindingStub.java
+ * UpdateStockAmountServiceSoapBindingStub.java
  *
  * This file was auto-generated from WSDL
  * by the Apache Axis 1.4 Apr 22, 2006 (06:55:48 PDT) WSDL2Java emitter.
@@ -7,7 +7,7 @@
 
 package iis.project.jpa.webservices;
 
-public class CheckDroneAvailableServiceSoapBindingStub extends org.apache.axis.client.Stub implements iis.project.jpa.webservices.CheckDroneAvailable {
+public class UpdateStockAmountServiceSoapBindingStub extends org.apache.axis.client.Stub implements iis.project.jpa.webservices.UpdateStockAmount {
     private java.util.Vector cachedSerClasses = new java.util.Vector();
     private java.util.Vector cachedSerQNames = new java.util.Vector();
     private java.util.Vector cachedSerFactories = new java.util.Vector();
@@ -24,26 +24,28 @@ public class CheckDroneAvailableServiceSoapBindingStub extends org.apache.axis.c
         org.apache.axis.description.OperationDesc oper;
         org.apache.axis.description.ParameterDesc param;
         oper = new org.apache.axis.description.OperationDesc();
-        oper.setName("getIdOfAvailableDrone");
-        oper.setReturnType(new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "int"));
-        oper.setReturnClass(int.class);
-        oper.setReturnQName(new javax.xml.namespace.QName("", "return"));
+        oper.setName("updateStockAmount");
+        param = new org.apache.axis.description.ParameterDesc(new javax.xml.namespace.QName("", "arg0"), org.apache.axis.description.ParameterDesc.IN, new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "int"), int.class, false, false);
+        oper.addParameter(param);
+        param = new org.apache.axis.description.ParameterDesc(new javax.xml.namespace.QName("", "arg1"), org.apache.axis.description.ParameterDesc.IN, new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "int"), int.class, false, false);
+        oper.addParameter(param);
+        oper.setReturnType(org.apache.axis.encoding.XMLType.AXIS_VOID);
         oper.setStyle(org.apache.axis.constants.Style.WRAPPED);
         oper.setUse(org.apache.axis.constants.Use.LITERAL);
         _operations[0] = oper;
 
     }
 
-    public CheckDroneAvailableServiceSoapBindingStub() throws org.apache.axis.AxisFault {
+    public UpdateStockAmountServiceSoapBindingStub() throws org.apache.axis.AxisFault {
          this(null);
     }
 
-    public CheckDroneAvailableServiceSoapBindingStub(java.net.URL endpointURL, javax.xml.rpc.Service service) throws org.apache.axis.AxisFault {
+    public UpdateStockAmountServiceSoapBindingStub(java.net.URL endpointURL, javax.xml.rpc.Service service) throws org.apache.axis.AxisFault {
          this(service);
          super.cachedEndpoint = endpointURL;
     }
 
-    public CheckDroneAvailableServiceSoapBindingStub(javax.xml.rpc.Service service) throws org.apache.axis.AxisFault {
+    public UpdateStockAmountServiceSoapBindingStub(javax.xml.rpc.Service service) throws org.apache.axis.AxisFault {
         if (service == null) {
             super.service = new org.apache.axis.client.Service();
         } else {
@@ -85,7 +87,7 @@ public class CheckDroneAvailableServiceSoapBindingStub extends org.apache.axis.c
         }
     }
 
-    public int getIdOfAvailableDrone() throws java.rmi.RemoteException {
+    public void updateStockAmount(int arg0, int arg1) throws java.rmi.RemoteException {
         if (super.cachedEndpoint == null) {
             throw new org.apache.axis.NoEndPointException();
         }
@@ -97,23 +99,16 @@ public class CheckDroneAvailableServiceSoapBindingStub extends org.apache.axis.c
         _call.setProperty(org.apache.axis.client.Call.SEND_TYPE_ATTR, Boolean.FALSE);
         _call.setProperty(org.apache.axis.AxisEngine.PROP_DOMULTIREFS, Boolean.FALSE);
         _call.setSOAPVersion(org.apache.axis.soap.SOAPConstants.SOAP11_CONSTANTS);
-        _call.setOperationName(new javax.xml.namespace.QName("http://webservices.jpa.project.iis/", "getIdOfAvailableDrone"));
+        _call.setOperationName(new javax.xml.namespace.QName("http://webservices.jpa.project.iis/", "updateStockAmount"));
 
         setRequestHeaders(_call);
         setAttachments(_call);
- try {        java.lang.Object _resp = _call.invoke(new java.lang.Object[] {});
+ try {        java.lang.Object _resp = _call.invoke(new java.lang.Object[] {new java.lang.Integer(arg0), new java.lang.Integer(arg1)});
 
         if (_resp instanceof java.rmi.RemoteException) {
             throw (java.rmi.RemoteException)_resp;
         }
-        else {
-            extractAttachments(_call);
-            try {
-                return ((java.lang.Integer) _resp).intValue();
-            } catch (java.lang.Exception _exception) {
-                return ((java.lang.Integer) org.apache.axis.utils.JavaUtils.convert(_resp, int.class)).intValue();
-            }
-        }
+        extractAttachments(_call);
   } catch (org.apache.axis.AxisFault axisFaultException) {
   throw axisFaultException;
 }

@@ -27,7 +27,6 @@ public class OrderArchiveRouteBuilder extends RouteBuilder {
 				.unmarshal(jaxbDataFormat) // XML to POJO
 				.marshal(jaxbDataFormat) // POJO to XML
 				.to(destination1) // to filesystem
-				.marshal().json(JsonLibrary.Jackson, Order.class) // POJO to JSON
 				.to(destination2); // to queue
 	}
 }

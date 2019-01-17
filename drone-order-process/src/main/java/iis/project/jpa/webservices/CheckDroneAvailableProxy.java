@@ -44,10 +44,10 @@ public class CheckDroneAvailableProxy implements iis.project.jpa.webservices.Che
     return checkDroneAvailable;
   }
   
-  public boolean checkDroneAvailable() throws java.rmi.RemoteException{
+  public int getIdOfAvailableDrone() throws java.rmi.RemoteException{
     if (checkDroneAvailable == null)
       _initCheckDroneAvailableProxy();
-    return checkDroneAvailable.checkDroneAvailable();
+    return checkDroneAvailable.getIdOfAvailableDrone();
   }
   
   

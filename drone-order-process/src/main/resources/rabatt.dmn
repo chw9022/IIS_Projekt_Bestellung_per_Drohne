@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://www.omg.org/spec/DMN/20151101/dmn.xsd" xmlns:biodi="http://bpmn.io/schema/dmn/biodi/1.0" id="Definitions_1f97drc" name="DRD" namespace="http://camunda.org/schema/1.0/dmn">
+  <decision id="rabatt" name="Rabattberechnung">
+    <extensionElements>
+      <biodi:bounds x="200" y="200" width="180" height="80" />
+      <biodi:edge source="InputData_0he2hwk">
+        <biodi:waypoints x="215" y="322" />
+        <biodi:waypoints x="253" y="280" />
+      </biodi:edge>
+      <biodi:edge source="InputData_1w01p0z">
+        <biodi:waypoints x="359" y="320" />
+        <biodi:waypoints x="325" y="280" />
+      </biodi:edge>
+    </extensionElements>
+    <informationRequirement>
+      <requiredInput href="#InputData_0he2hwk" />
+    </informationRequirement>
+    <informationRequirement>
+      <requiredInput href="#InputData_1w01p0z" />
+    </informationRequirement>
+    <decisionTable id="decisionTable_1">
+      <input id="input_1" label="Kundentyp">
+        <inputExpression id="inputExpression_1" typeRef="string">
+          <text>rabatt_clienttype</text>
+        </inputExpression>
+      </input>
+      <input id="InputClause_138pdsa" label="Bestellungspreis">
+        <inputExpression id="LiteralExpression_15dxaa2" typeRef="double">
+          <text>rabatt_price</text>
+        </inputExpression>
+      </input>
+      <output id="output_1" label="Rabattprozent" name="rabatt_prozent" typeRef="double" />
+      <rule id="DecisionRule_085a4yl">
+        <inputEntry id="UnaryTests_02cnep2">
+          <text>"NORMAL"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0mbuo1u">
+          <text>&lt;=40</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1nfn2c8">
+          <text>1</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1hkth7h">
+        <inputEntry id="UnaryTests_1wkpwnj">
+          <text>"NORMAL"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0vj3vo5">
+          <text>&gt;40</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0w3qrk7">
+          <text>0.95</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1jcqku9">
+        <inputEntry id="UnaryTests_0mcvevk">
+          <text>"PREMIUM"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0e99ihz">
+          <text>&lt;=40</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0x7mper">
+          <text>0.93</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1axd8qu">
+        <inputEntry id="UnaryTests_0jrw5eg">
+          <text>"PREMIUM"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1eque79">
+          <text>&gt;40</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1ryqn20">
+          <text>0.9</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0lf14js">
+        <inputEntry id="UnaryTests_15usmfh">
+          <text>"SUPER"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0cqftcl">
+          <text>&gt;20</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1wk54v3">
+          <text>0.85</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_17ygw9r">
+        <inputEntry id="UnaryTests_1s9clpa">
+          <text>"DONOTUSE"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1lagxm1">
+          <text></text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0xtae5y">
+          <text>0.9</text>
+        </outputEntry>
+      </rule>
+    </decisionTable>
+  </decision>
+  <inputData id="InputData_0he2hwk" name="clienttype">
+    <extensionElements>
+      <biodi:bounds x="131" y="322" width="125" height="45" />
+    </extensionElements>
+  </inputData>
+  <inputData id="InputData_1w01p0z" name="order price">
+    <extensionElements>
+      <biodi:bounds x="316" y="320" width="125" height="45" />
+    </extensionElements>
+  </inputData>
+</definitions>

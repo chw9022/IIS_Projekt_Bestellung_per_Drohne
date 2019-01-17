@@ -24,6 +24,8 @@ public class EsperApplication implements Runnable {
 		EPStatement epsStatement = epsServiceProvider.getEPAdministrator().createEPL(droneHomeListener.getQuery());
 		epsStatement.addListener(droneHomeListener);
 		DroneSimulationManager droneSimulationManager = new DroneSimulationManager(epsServiceProvider);
+		System.out.print("simulatormanager started");
 		droneSimulationManager.run();
+	
 	}
 }

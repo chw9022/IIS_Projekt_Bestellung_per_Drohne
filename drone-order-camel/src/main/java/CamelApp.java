@@ -1,3 +1,4 @@
+
 // #######################################
 // Author: Felix Ziegner
 // #######################################
@@ -8,9 +9,15 @@ import org.apache.activemq.ActiveMQConnectionFactory;
 import org.apache.camel.component.jms.JmsComponent;
 import org.apache.camel.main.Main;
 
+import routes.MessageToCamundaRouteBuilder;
 import routes.OrderArchiveRouteBuilder;
 
 public class CamelApp extends Main {
+
+	public static void main(String[] args) throws Exception {
+		CamelApp ca = new CamelApp();
+		ca.start();
+	}
 
 	public CamelApp() {
 		super();
@@ -25,5 +32,6 @@ public class CamelApp extends Main {
 
 	private void addRouteBuilders() {
 		this.addRouteBuilder(new OrderArchiveRouteBuilder());
+		this.addRouteBuilder(new MessageToCamundaRouteBuilder());
 	}
 }

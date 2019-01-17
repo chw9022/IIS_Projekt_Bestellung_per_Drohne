@@ -22,6 +22,6 @@ public class SendDroneTimeOfArrival implements JavaDelegate {
 		message.setTtimeOfArrival(timeOfArrival);
 		ObjectMapper mapper = new ObjectMapper();
 		String jsonString = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(message);
-		m.sendMessage(jsonString, "package-arrival-time");
+		m.sendTextMessage(jsonString, "package-arrival-time");
 	}
 }
