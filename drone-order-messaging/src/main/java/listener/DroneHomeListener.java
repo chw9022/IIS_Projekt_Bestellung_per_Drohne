@@ -14,12 +14,11 @@ import org.codehaus.jackson.map.ObjectMapper;
 import com.espertech.esper.client.EventBean;
 import com.espertech.esper.client.UpdateListener;
 
-import adapter.CamundaCorrelationKey;
-import adapter.CamundaMessage;
-import adapter.CamundaVariableType;
-
 import event.DronePositionNotification;
 import iis.project.jms.JMSManager;
+import iis.project.processengine.message.CamundaCorrelationKey;
+import iis.project.processengine.message.CamundaMessage;
+import iis.project.processengine.message.CamundaVariableType;
 import iis.project.processengine.message.DroneLandedMessage;
 
 public class DroneHomeListener implements UpdateListener {
