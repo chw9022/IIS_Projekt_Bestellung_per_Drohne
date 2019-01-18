@@ -255,7 +255,7 @@
     <bpmn:userTask id="Task_1mhmdd1" name="Drohne per Knopfdruck versenden" camunda:assignee="demo">
       <bpmn:extensionElements>
         <camunda:formData>
-          <camunda:formField id="droneId" label="Folgende Drohne versenden:" type="long" defaultValue="${droneId}">
+          <camunda:formField id="droneId" label="Folgende Drohne versenden:" type="long" defaultValue="${order.droneId}">
             <camunda:validation>
               <camunda:constraint name="readonly" />
             </camunda:validation>
