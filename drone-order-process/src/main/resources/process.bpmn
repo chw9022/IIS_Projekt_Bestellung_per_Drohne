@@ -56,7 +56,7 @@
       <bpmn:incoming>SequenceFlow_0s32en2</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_15mdz1m</bpmn:outgoing>
     </bpmn:serviceTask>
-    <bpmn:serviceTask id="Task_0e48ssh" name="Lieferschein erstellen" camunda:class="iis.project.processengine.delegate.DummyDelegator">
+    <bpmn:serviceTask id="Task_0e48ssh" name="Lieferschein erstellen" camunda:class="iis.project.processengine.delegate.CreateDummyDeliveryNote">
       <bpmn:incoming>SequenceFlow_0i50wqx</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_1jloaoe</bpmn:outgoing>
       <bpmn:property id="Property_1t1i9wt" name="__targetRef_placeholder" />
@@ -196,16 +196,7 @@
           <bpmn:targetRef>Property_0jr31jq</bpmn:targetRef>
         </bpmn:dataInputAssociation>
       </bpmn:manualTask>
-      <bpmn:userTask id="ServiceTask_1tk8dgb" name="Drohne für Lieferung konfigurieren" camunda:assignee="demo">
-        <bpmn:extensionElements>
-          <camunda:formData>
-            <camunda:formField id="vorname" label="Vorname" type="string" />
-            <camunda:formField id="nachname" label="Nachname" type="string" />
-            <camunda:formField id="strasse" label="Strasse" type="string" />
-            <camunda:formField id="stadt" label="Stadt" type="string" />
-            <camunda:formField id="gesamtgewicht" label="Gesamtgewicht" type="long" />
-          </camunda:formData>
-        </bpmn:extensionElements>
+      <bpmn:userTask id="ServiceTask_1tk8dgb" name="Drohne für Lieferung konfigurieren" camunda:formKey="embedded:app:deliveryNote-form.html" camunda:assignee="demo">
         <bpmn:incoming>SequenceFlow_07ohx8h</bpmn:incoming>
         <bpmn:outgoing>SequenceFlow_1ihmiff</bpmn:outgoing>
         <bpmn:property id="Property_0g0zlzd" name="__targetRef_placeholder" />

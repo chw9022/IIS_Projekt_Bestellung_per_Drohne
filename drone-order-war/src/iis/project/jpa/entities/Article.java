@@ -57,11 +57,11 @@ public class Article implements Serializable {
 	}
 
 	@XmlElement
-	public double getweightInKg() {
+	public double getWeightInKg() {
 		return weightInKg;
 	}
 
-	public void setweightInKg(double weightInKg) {
+	public void setWeightInKg(double weightInKg) {
 		this.weightInKg = weightInKg;
 	}
 

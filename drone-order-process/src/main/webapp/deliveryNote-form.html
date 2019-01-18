@@ -1,0 +1,23 @@
+<form role="form" name="variablesForm">
+	<h3>Folgenden Lieferschein scannen:</h3>
+
+	<script cam-script type="text/form-script">
+		camForm.on('form-loaded', function() {
+  			// tell the form SDK to fetch the variable named 'deliveryNote'
+  			camForm.variableManager.fetchVariable('deliveryNote');
+		});
+
+		camForm.on('variables-fetched', function() {
+  			// after the variables are fetched, bind the value of customerData to a angular
+  			// scope value such that the form can work on it
+  			$scope.deliveryNote = camForm.variableManager.variable('deliveryNote').value;
+		});
+  	</script>
+ 	
+	<textarea cam-variable-type="String"
+			  rows="13"
+			  cols="30"
+		  	  readonly>
+{{deliveryNote}} 	
+	</textarea>
+</form>
