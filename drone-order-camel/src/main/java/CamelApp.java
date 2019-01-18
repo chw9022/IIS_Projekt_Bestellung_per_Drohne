@@ -14,6 +14,7 @@ import org.apache.commons.dbcp2.BasicDataSource;
 import routes.DroneLandedRouteBuilder;
 import routes.MessageToCamundaRouteBuilder;
 import routes.OrderArchiveRouteBuilder;
+import routes.RechnungRouteBuilder;
 
 public class CamelApp extends Main {
 
@@ -38,6 +39,7 @@ public class CamelApp extends Main {
 		this.addRouteBuilder(new OrderArchiveRouteBuilder());
 		this.addRouteBuilder(new MessageToCamundaRouteBuilder());
 		this.addRouteBuilder(new DroneLandedRouteBuilder());
+		this.addRouteBuilder(new RechnungRouteBuilder());
 	}
 	
 	private DataSource getGroceryshopDataSource() {
