@@ -6,11 +6,10 @@ package iis.project.processengine.delegate;
 import org.camunda.bpm.engine.delegate.DelegateExecution;
 import org.camunda.bpm.engine.delegate.JavaDelegate;
 
-import iis.project.jpa.webservices.UpdateStockAmountProxy;
-import iis.project.jpa.entities.Article;
 import iis.project.jpa.entities.Order;
 import iis.project.jpa.entities.OrderPosition;
 import iis.project.jpa.webservices.UpdateStockAmount;
+import iis.project.jpa.webservices.UpdateStockAmountProxy;
 
 public class CallUpdateStockAmount implements JavaDelegate {
     
