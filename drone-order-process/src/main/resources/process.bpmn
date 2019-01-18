@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" id="Definitions_1whdbbm" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="2.2.3">
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" id="Definitions_1whdbbm" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="2.0.3">
   <bpmn:collaboration id="Collaboration_1vg6yec">
     <bpmn:participant id="Participant_1c21xix" name="Bestellprozess-per-Drohne" processRef="Process_Order_per_Drone" />
     <bpmn:participant id="Participant_0ovq4t7" name="Kunde" />
@@ -45,7 +45,7 @@
       <bpmn:outgoing>SequenceFlow_1u7fbij</bpmn:outgoing>
       <bpmn:outgoing>SequenceFlow_0s32en2</bpmn:outgoing>
     </bpmn:parallelGateway>
-    <bpmn:startEvent id="StartEvent_1e8e9sq" name="Bestelleingang">
+    <bpmn:startEvent id="StartEvent_1e8e9sq" name="Bestellung empfangen">
       <bpmn:extensionElements>
         <camunda:executionListener class="iis.project.processengine.delegate.CreateDummyOrder" event="end" />
       </bpmn:extensionElements>
@@ -84,12 +84,12 @@
     <bpmn:endEvent id="EndEvent_0lf30in" name="Bestellung abgeschlossen">
       <bpmn:incoming>SequenceFlow_0c3grjv</bpmn:incoming>
     </bpmn:endEvent>
-    <bpmn:intermediateThrowEvent id="sendDroneTimeOfArrival" name="Übermittlung der voraussichtlichen Ankunftszeit">
+    <bpmn:intermediateThrowEvent id="sendDroneTimeOfArrival" name="Voraussichtliche Ankunftzeit senden">
       <bpmn:incoming>SequenceFlow_0s7igva</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_0rrwcxt</bpmn:outgoing>
       <bpmn:messageEventDefinition camunda:class="iis.project.processengine.delegate.SendDroneTimeOfArrival" />
     </bpmn:intermediateThrowEvent>
-    <bpmn:intermediateThrowEvent id="IntermediateThrowEvent_1xoph5l" name="Signal zum Start der Drohne">
+    <bpmn:intermediateThrowEvent id="IntermediateThrowEvent_1xoph5l" name="Drohnen-Start-Signal senden">
       <bpmn:incoming>SequenceFlow_0vsp0nk</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_1p11c90</bpmn:outgoing>
       <bpmn:messageEventDefinition camunda:class="iis.project.processengine.delegate.DroneStarted" />
@@ -133,7 +133,7 @@
       </bpmn:endEvent>
       <bpmn:sequenceFlow id="SequenceFlow_1beape4" sourceRef="StartEvent_1rnkzgz" targetRef="EndEvent_06yxk3j" />
     </bpmn:subProcess>
-    <bpmn:intermediateCatchEvent id="IntermediateCatchEvent_0l850a6" name="Kunde hat Drohnenlieferungerhalten">
+    <bpmn:intermediateCatchEvent id="IntermediateCatchEvent_0l850a6" name="Lieferungs-bestätigung empfangen">
       <bpmn:incoming>SequenceFlow_1ba510c</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_1w59it5</bpmn:outgoing>
       <bpmn:messageEventDefinition id="MessageEventDefinition_1o7vfxu" messageRef="Message_0d7e72q" />
@@ -148,7 +148,7 @@
       <bpmn:outgoing>SequenceFlow_0rd6zzg</bpmn:outgoing>
       <bpmn:outgoing>SequenceFlow_1ba510c</bpmn:outgoing>
     </bpmn:parallelGateway>
-    <bpmn:intermediateCatchEvent id="IntermediateCatchEvent_1dso6cl" name="Kunde hat Rechnung bezahlt">
+    <bpmn:intermediateCatchEvent id="IntermediateCatchEvent_1dso6cl" name="Zahlungs-bestätigung empfangen">
       <bpmn:incoming>SequenceFlow_0rd6zzg</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_1cv17t9</bpmn:outgoing>
       <bpmn:messageEventDefinition id="MessageEventDefinition_1cr47o7" messageRef="Message_06lbqoh" />
@@ -187,7 +187,7 @@
       <bpmn:sequenceFlow id="SequenceFlow_07ohx8h" name="Ja" sourceRef="ExclusiveGateway_0sftkk7" targetRef="ServiceTask_1tk8dgb">
         <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${droneAvailable == true}</bpmn:conditionExpression>
       </bpmn:sequenceFlow>
-      <bpmn:manualTask id="Task_1ubschf" name="Beladen der Drohne">
+      <bpmn:manualTask id="Task_1ubschf" name="Drohne beladen">
         <bpmn:incoming>SequenceFlow_1ihmiff</bpmn:incoming>
         <bpmn:outgoing>SequenceFlow_13lm4wf</bpmn:outgoing>
         <bpmn:property id="Property_0jr31jq" name="__targetRef_placeholder" />
@@ -291,7 +291,7 @@ Eine Drohne pro Bestellung</bpmn:text>
       <bpmndi:BPMNShape id="StartEvent_15pswv7_di" bpmnElement="StartEvent_1e8e9sq">
         <dc:Bounds x="208" y="508" width="36" height="36" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="221" y="552" width="73" height="14" />
+          <dc:Bounds x="230" y="552" width="55" height="27" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="SubProcess_1519gwn_di" bpmnElement="Task_1122ynx" isExpanded="true">
@@ -353,7 +353,7 @@ Eine Drohne pro Bestellung</bpmn:text>
       <bpmndi:BPMNShape id="IntermediateThrowEvent_075itij_di" bpmnElement="sendDroneTimeOfArrival">
         <dc:Bounds x="1623" y="881" width="36" height="36" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="1599" y="927" width="85" height="40" />
+          <dc:Bounds x="1602" y="927" width="80" height="40" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="ServiceTask_12kp90g_di" bpmnElement="Task_1huh6rg">
@@ -454,7 +454,7 @@ Eine Drohne pro Bestellung</bpmn:text>
       <bpmndi:BPMNShape id="IntermediateCatchEvent_1ewok37_di" bpmnElement="IntermediateCatchEvent_0l850a6">
         <dc:Bounds x="1229" y="291" width="36" height="36" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="1206" y="334" width="85" height="40" />
+          <dc:Bounds x="1220" y="334" width="57" height="40" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="MessageFlow_0tz6yta_di" bpmnElement="MessageFlow_0tz6yta">
@@ -467,7 +467,7 @@ Eine Drohne pro Bestellung</bpmn:text>
       <bpmndi:BPMNShape id="IntermediateCatchEvent_1dso6cl_di" bpmnElement="IntermediateCatchEvent_1dso6cl">
         <dc:Bounds x="1152" y="426" width="36" height="36" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="1127" y="469" width="89" height="27" />
+          <dc:Bounds x="1143" y="469" width="57" height="40" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="ParallelGateway_0rvrjyh_di" bpmnElement="ParallelGateway_0rvrjyh">
@@ -606,7 +606,7 @@ Eine Drohne pro Bestellung</bpmn:text>
       <bpmndi:BPMNShape id="IntermediateThrowEvent_0qt9ggm_di" bpmnElement="IntermediateThrowEvent_1xoph5l">
         <dc:Bounds x="1623" y="1036" width="36" height="36" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="1601" y="1006" width="81" height="27" />
+          <dc:Bounds x="1605" y="1006" width="74" height="27" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="SequenceFlow_047hjd4_di" bpmnElement="SequenceFlow_047hjd4">
