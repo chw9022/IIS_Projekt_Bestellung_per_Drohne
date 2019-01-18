@@ -20,6 +20,10 @@ public class CreateDummyOrder implements ExecutionListener {
 		o.setOrderdate(new Date());
 		
 		Client c = new Client();
+		c.setFirstname("Alan");
+		c.setLastname("Turing");
+		c.setPlace("Ingolstadt");
+		c.setStreet("Münchener Str. 1516");
 		c.setClienttype(ClientType.PREMIUM);
 
         Article a1 = new Article();
