@@ -1,10 +1,11 @@
 package iis.project.processengine.delegate;
-
+//Author: Quirin Stoll
 import java.util.List;
 
 import org.camunda.bpm.engine.delegate.DelegateExecution;
 import org.camunda.bpm.engine.delegate.JavaDelegate;
 
+import iis.project.jms.JMSManager;
 import iis.project.jpa.entities.Order;
 import iis.project.jpa.entities.OrderPosition;
 
@@ -17,7 +18,11 @@ public class CreateDummyDeliveryNote implements JavaDelegate {
     public void execute(DelegateExecution execution) throws Exception {
         
         Order order = (Order) execution.getVariable(ORDER_VARIABLE);
-
+        int userid = (int) execution.getVariable("user");
+        String products = (String) execution.getVariable("orders");
+        System.out.println(userid);
+        JMSManager jms = new JMSManager();
+        jms.sendTextMessage("{\"client\":"+userid+", \"ordersPositions\":["+products+"]}", "order_webservice");
         String dummyDeliveryNote =  
                 "\nAdresse: \n" + 
                 order.getClient().getFirstname() + " " + order.getClient().getLastname() + "\n" +
