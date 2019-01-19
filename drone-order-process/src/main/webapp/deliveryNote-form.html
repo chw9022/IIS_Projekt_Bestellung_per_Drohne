@@ -8,7 +8,7 @@
 		});
 
 		camForm.on('variables-fetched', function() {
-  			// after the variables are fetched, bind the value of customerData to a angular
+  			// after the variables are fetched, bind the value of deliverNote to a angular
   			// scope value such that the form can work on it
   			$scope.deliveryNote = camForm.variableManager.variable('deliveryNote').value;
 		});

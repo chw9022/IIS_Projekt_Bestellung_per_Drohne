@@ -15,7 +15,6 @@ public class DroneLandedRouteBuilder extends RouteBuilder {
     
     @Override
     public void configure() throws Exception {
-        
         JAXBContext jaxbContext = JAXBContext.newInstance(DroneLandedMessage.class);
         JaxbDataFormat jaxbDataFormat = new JaxbDataFormat(jaxbContext);
         

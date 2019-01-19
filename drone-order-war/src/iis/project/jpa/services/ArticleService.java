@@ -29,5 +29,4 @@ public class ArticleService implements ArticleServiceLocal {
 	public void setStockAmount(int id, int newStockAmount) {
 	    em.find(Article.class, id).setStockAmount(newStockAmount);
 	}
-
 }

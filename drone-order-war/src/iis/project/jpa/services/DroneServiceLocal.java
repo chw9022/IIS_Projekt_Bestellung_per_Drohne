@@ -6,8 +6,7 @@ package iis.project.jpa.services;
 import javax.ejb.Local;
 
 @Local
-public interface DroneServiceLocal {
-    
+public interface DroneServiceLocal {    
     int getIdOfAvailableDrone();
     void setDroneAvailable(int id, boolean available);
 }

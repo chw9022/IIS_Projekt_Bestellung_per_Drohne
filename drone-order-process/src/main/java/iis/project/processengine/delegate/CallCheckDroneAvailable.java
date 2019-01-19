@@ -22,7 +22,7 @@ public class CallCheckDroneAvailable implements JavaDelegate {
     @Override
     public void execute(DelegateExecution execution) throws Exception {
                 
-        int droneId = webService.getIdOfAvailableDrone(); // returns 0 if no drone available
+        int droneId = webService.getIdOfAvailableDrone();
         Order order = (Order) execution.getVariable(ORDER_VARIABLE);
         
         order.setDroneId(droneId); 

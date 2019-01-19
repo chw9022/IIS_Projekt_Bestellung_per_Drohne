@@ -17,7 +17,7 @@ public class UpdateStockAmount {
     
     @WebMethod
     public synchronized void updateStockAmount(int articleId, int stockAmountToSubtract) {
-        
+
         if (articleService.getStockAmount(articleId) >= stockAmountToSubtract) {
             articleService.setStockAmount(articleId, articleService.getStockAmount(articleId) - stockAmountToSubtract);
         }

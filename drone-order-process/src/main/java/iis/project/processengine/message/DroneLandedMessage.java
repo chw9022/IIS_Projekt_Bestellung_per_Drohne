@@ -12,7 +12,6 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class DroneLandedMessage implements Serializable {
 
     private static final long serialVersionUID = 1L;
-
     private int droneId;
 
     public DroneLandedMessage() {
@@ -32,5 +31,4 @@ public class DroneLandedMessage implements Serializable {
     public void setDroneId(int droneId) {
         this.droneId = droneId;
     }
-
 }

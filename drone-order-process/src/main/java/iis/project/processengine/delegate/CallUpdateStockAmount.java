@@ -18,15 +18,12 @@ public class CallUpdateStockAmount implements JavaDelegate {
     UpdateStockAmount webService = new UpdateStockAmountProxy().getUpdateStockAmount();
 
     @Override
-    public void execute(DelegateExecution execution) throws Exception {
-        
+    public void execute(DelegateExecution execution) throws Exception {        
         Order order = (Order) execution.getVariable(ORDER_VARIABLE);
 
-        for (OrderPosition orderPosition : order.getOrderPositions())
-        {
+        for (OrderPosition orderPosition : order.getOrderPositions()) {
             webService.updateStockAmount(orderPosition.getArticle().getId(), 
                                          orderPosition.getAmount());            
         }
     }
-
 }
