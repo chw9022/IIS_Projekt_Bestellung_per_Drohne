@@ -15,8 +15,8 @@ public class CreateDummyOrder implements ExecutionListener {
 
 	@Override
 	public void notify(DelegateExecution execution) throws Exception {
-	    
-		Order o = new Order();
+		
+	    Order o = new Order();
 		o.setOrderdate(new Date());
 		
 		Client c = new Client();
