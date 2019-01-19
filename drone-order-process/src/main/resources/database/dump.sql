@@ -33,11 +33,10 @@ DROP TABLE IF EXISTS `groceryshop`.`orders`;
 CREATE TABLE IF NOT EXISTS orders(
 id int PRIMARY KEY AUTO_INCREMENT,
 clientId int NOT NULL,
-droneId int DEFAULT -1,
+droneId int DEFAULT 0,
 orderdate DATE,
 closed_at DATE,
-FOREIGN KEY (clientId) REFERENCES clients(id),
-FOREIGN KEY (droneId) REFERENCES drone(id)
+FOREIGN KEY (clientId) REFERENCES clients(id)
 );
 
 DROP TABLE IF EXISTS `groceryshop`.`bills`;

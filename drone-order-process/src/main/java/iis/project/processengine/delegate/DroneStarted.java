@@ -10,14 +10,18 @@ import org.camunda.bpm.engine.delegate.DelegateExecution;
 import org.camunda.bpm.engine.delegate.JavaDelegate;
 
 import iis.project.jms.JMSManager;
+import iis.project.jpa.entities.Order;
 import iis.project.processengine.message.DroneStartedMessage;
 
 public class DroneStarted implements JavaDelegate {
+    
+    private static final String ORDER_VARIABLE = "order";
 
 	@Override
 	public void execute(DelegateExecution execution) throws Exception {
 		JMSManager m = new JMSManager();
-		Integer droneId = ((Long) execution.getVariable("droneId")).intValue();
+	    Order order = (Order) execution.getVariable(ORDER_VARIABLE);
+		Integer droneId = order.getDroneId();
 		Calendar timeOfArrival = Calendar.getInstance();
 		timeOfArrival.add(Calendar.MINUTE, 5);
 		DroneStartedMessage message = new DroneStartedMessage();

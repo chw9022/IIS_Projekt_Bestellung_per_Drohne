@@ -21,10 +21,8 @@ public class DroneService implements DroneServiceLocal {
     
     private static final int NOT_AVAILABLE = 0;
 
-    
     @PersistenceContext
-    EntityManager em;
-    
+    EntityManager em;    
 
     @Override
     public int getIdOfAvailableDrone() {
@@ -38,7 +36,6 @@ public class DroneService implements DroneServiceLocal {
         else {
             int idOfAvailableDrone = droneIds.get(0);
             setDroneAvailable(idOfAvailableDrone, false);
-            System.out.println("Verfügbare Drohne: " + idOfAvailableDrone);
             return idOfAvailableDrone;
         }
     }

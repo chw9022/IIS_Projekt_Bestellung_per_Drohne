@@ -1,7 +1,7 @@
 // #######################################
 // Author: Felix Ziegner
 // #######################################
-package adapter;
+package iis.project.processengine.message;
 
 public class CamundaCorrelationKey {
 	private String name;

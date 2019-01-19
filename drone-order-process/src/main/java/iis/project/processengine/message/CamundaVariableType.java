@@ -1,7 +1,7 @@
 // #######################################
 // Author: Felix Ziegner
 // #######################################
-package adapter;
+package iis.project.processengine.message;
 
 public final class CamundaVariableType {
 	public static final String STRING = "String";

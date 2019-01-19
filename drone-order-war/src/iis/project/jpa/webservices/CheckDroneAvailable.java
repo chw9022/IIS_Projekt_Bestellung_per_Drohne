@@ -16,7 +16,7 @@ public class CheckDroneAvailable {
     DroneService droneService;
     
     @WebMethod
-    public int getIdOfAvailableDrone() {
+    public synchronized int getIdOfAvailableDrone() {
         return droneService.getIdOfAvailableDrone();
     }
 }

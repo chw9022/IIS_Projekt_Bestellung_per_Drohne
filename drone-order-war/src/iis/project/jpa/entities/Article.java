@@ -42,6 +42,10 @@ public class Article implements Serializable {
 	public int getId() {
 		return id;
 	}
+	
+    public void setId(int id) {
+        this.id = id;
+    }
 
 	@XmlElement
 	public String getName() {
@@ -53,11 +57,11 @@ public class Article implements Serializable {
 	}
 
 	@XmlElement
-	public double getweightInKg() {
+	public double getWeightInKg() {
 		return weightInKg;
 	}
 
-	public void setweightInKg(double weightInKg) {
+	public void setWeightInKg(double weightInKg) {
 		this.weightInKg = weightInKg;
 	}
 

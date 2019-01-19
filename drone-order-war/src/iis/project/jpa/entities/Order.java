@@ -16,7 +16,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -41,9 +40,8 @@ public class Order implements Serializable {
 	@JoinColumn(name = "clientId")
 	private Client client;
 	
-	@ManyToOne(fetch = FetchType.LAZY ,cascade = {CascadeType.PERSIST})
-	@JoinColumn(name = "droneId")
-	private Drone drone;
+	@Column(name = "droneId")
+	private int droneId;
 	
 	@Column(name = "orderdate")
 	private Date orderdate;
@@ -75,12 +73,12 @@ public class Order implements Serializable {
 	}
 
 	@XmlElement
-	public Drone getDrone() {
-        return drone;
+    public int getDroneId() {
+        return droneId;
     }
 
-    public void setDrone(Drone drone) {
-        this.drone = drone;
+    public void setDroneId(int droneId) {
+        this.droneId = droneId;
     }
 
     @XmlElement

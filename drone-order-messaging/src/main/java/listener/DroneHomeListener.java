@@ -3,17 +3,22 @@
 // #######################################
 package listener;
 
+import java.io.StringWriter;
+
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.Marshaller;
+
 import org.codehaus.jackson.map.ObjectMapper;
 
 import com.espertech.esper.client.EventBean;
 import com.espertech.esper.client.UpdateListener;
 
-import adapter.CamundaCorrelationKey;
-import adapter.CamundaMessage;
-import adapter.CamundaVariableType;
-
 import event.DronePositionNotification;
 import iis.project.jms.JMSManager;
+import iis.project.processengine.message.CamundaCorrelationKey;
+import iis.project.processengine.message.CamundaMessage;
+import iis.project.processengine.message.CamundaVariableType;
+import iis.project.processengine.message.DroneLandedMessage;
 
 public class DroneHomeListener implements UpdateListener {
 
@@ -41,5 +46,17 @@ public class DroneHomeListener implements UpdateListener {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
+        DroneLandedMessage message = new DroneLandedMessage();
+        message.setDroneId(dronePositionNotificationHome.getDroneId());
+        try {
+            JAXBContext jaxbContext = JAXBContext.newInstance(DroneLandedMessage.class);
+            Marshaller marshaller = jaxbContext.createMarshaller();
+            StringWriter stringWriter = new StringWriter();
+            marshaller.marshal(message, stringWriter);
+            jmsManager.sendTextMessage(stringWriter.toString(), "drone-landed");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 	}
 }
