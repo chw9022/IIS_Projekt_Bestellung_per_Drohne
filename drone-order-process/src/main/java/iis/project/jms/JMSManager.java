@@ -47,4 +47,20 @@ public class JMSManager {
 		producer.send(m1);
 		connection.close();
 	}
+
+	public void sendTextMessage(String message, String queueName, String headerName, String headerValue)
+			throws Exception {
+		ActiveMQConnectionFactory connectionFactory = new ActiveMQConnectionFactory(
+				ActiveMQConnection.DEFAULT_BROKER_URL);
+		connectionFactory.setTrustAllPackages(true);
+		Connection connection = connectionFactory.createConnection();
+		Session session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
+		Queue queue = session.createQueue(queueName);
+		MessageProducer producer = session.createProducer(queue);
+		connection.start();
+		TextMessage m1 = session.createTextMessage(message);
+		m1.setStringProperty(headerName, headerValue);
+		producer.send(m1);
+		connection.close();
+	}
 }

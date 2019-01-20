@@ -7,6 +7,7 @@ import org.camunda.bpm.engine.delegate.DelegateExecution;
 import org.camunda.bpm.engine.delegate.JavaDelegate;
 
 import iis.project.jms.JMSManager;
+import iis.project.jpa.entities.Order;
 
 public class SendRechnung implements JavaDelegate {
 
@@ -18,8 +19,8 @@ public class SendRechnung implements JavaDelegate {
 
 		Map<String, Object> SendOrder = execution.getVariables();
 		String msg = (String) SendOrder.get("msg");
-
+		Order order = (Order) execution.getVariable("order");
 		JMSManager jmsKunde = new JMSManager();
-		jmsKunde.sendTextMessage(msg, QUEUE_KUNDE);
+		jmsKunde.sendTextMessage(msg, QUEUE_KUNDE, "clientId", Integer.toString(order.getClient().getId()));
 	}
 }

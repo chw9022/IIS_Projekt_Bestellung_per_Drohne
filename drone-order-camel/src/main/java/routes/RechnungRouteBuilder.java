@@ -15,7 +15,7 @@ public class RechnungRouteBuilder extends RouteBuilder {
         Endpoint destination2 = endpoint("jms:queue:rechnungAggregator");
 
         from(source) 
-                .aggregate(body(), new RechnungAggregationStrategy())
+                .aggregate(header("clientId"), new RechnungAggregationStrategy())
                 .completionSize(2)
                 .to(destination1)
                 .to(destination2);
