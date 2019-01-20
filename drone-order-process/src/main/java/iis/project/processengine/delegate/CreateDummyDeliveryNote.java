@@ -2,6 +2,8 @@ package iis.project.processengine.delegate;
 //Author: Quirin Stoll
 import java.util.List;
 
+import javax.xml.bind.JAXB;
+
 import org.camunda.bpm.engine.delegate.DelegateExecution;
 import org.camunda.bpm.engine.delegate.JavaDelegate;
 
@@ -20,9 +22,8 @@ public class CreateDummyDeliveryNote implements JavaDelegate {
         Order order = (Order) execution.getVariable(ORDER_VARIABLE);
         int userid = (int) execution.getVariable("user");
         String products = (String) execution.getVariable("orders");
-        System.out.println(userid);
-        JMSManager jms = new JMSManager();
-        jms.sendTextMessage("{\"client\":"+userid+", \"ordersPositions\":["+products+"]}", "order_webservice");
+        //JMSManager jms = new JMSManager();
+        //jms.sendTextMessage("{\"client\":"+userid+", \"ordersPositions\":["+products+"]}", "order_webservice");
         String dummyDeliveryNote =  
                 "\nAdresse: \n" + 
                 order.getClient().getFirstname() + " " + order.getClient().getLastname() + "\n" +
@@ -33,7 +34,6 @@ public class CreateDummyDeliveryNote implements JavaDelegate {
                 getArticles(order) + 
                 "\n" +
                 "Gesamtgewicht der Ware: " + String.valueOf(getOverallWeightInKg(order)) + "kg";
-        
         execution.setVariable(DELIVERY_NOTE_VARIABLE, dummyDeliveryNote);
         
         System.out.print(dummyDeliveryNote);

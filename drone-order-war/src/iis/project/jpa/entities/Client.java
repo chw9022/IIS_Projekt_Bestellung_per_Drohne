@@ -26,7 +26,11 @@ public class Client implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
 	private int id;
-	@Column(name = "firstname")
+	public void setId(int id) {
+        this.id = id;
+    }
+
+    @Column(name = "firstname")
 	private String firstname;
 	@Column(name = "lastname")
 	private String lastname;

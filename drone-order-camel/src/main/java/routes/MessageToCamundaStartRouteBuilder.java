@@ -14,7 +14,6 @@ public class MessageToCamundaStartRouteBuilder extends RouteBuilder {
 		from(source) // nl
 				.setHeader(Exchange.HTTP_METHOD, constant("POST"))
 				.setHeader(Exchange.CONTENT_TYPE, constant("application/json"))
-				.log("${body}")
 				.to(destination1);
 	}
 }

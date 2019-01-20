@@ -14,6 +14,6 @@ public class MessageToOrderWebserviceRouteBuilder extends RouteBuilder {
 		from(source) // nl
 				.setHeader(Exchange.HTTP_METHOD, constant("POST"))
 				.setHeader(Exchange.CONTENT_TYPE, constant("application/json"))		
-				.to(destination1);
+				.to(destination1).setHeader(Exchange.CONTENT_TYPE, constant("text/xml")).to("jms:queue:order_replay");
 	}
 }

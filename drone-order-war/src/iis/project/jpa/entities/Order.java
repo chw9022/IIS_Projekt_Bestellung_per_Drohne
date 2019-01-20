@@ -33,7 +33,11 @@ public class Order implements Serializable {
 	@Column(name = "id")
 	private int id;
 	
-	@OneToMany(mappedBy = "order", cascade = CascadeType.PERSIST)
+	public void setId(int id) {
+        this.id = id;
+    }
+
+    @OneToMany(mappedBy = "order", cascade = CascadeType.PERSIST)
 	private List<OrderPosition> orderPositions = new ArrayList<OrderPosition>();
 	
 	@OneToOne(fetch = FetchType.LAZY)
